@@ -17,6 +17,19 @@
 		20630839222AF16800C68F43 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20630835222AF16800C68F43 /* NavigationRouter.swift */; };
 		2063083C222AF18400C68F43 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063083B222AF18400C68F43 /* DataProvider.swift */; };
 		20852F7E222AF2E500C0E054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20852F7D222AF2E500C0E054 /* LaunchScreen.storyboard */; };
+		20852F90222AF50E00C0E054 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8B222AF50E00C0E054 /* RxBlocking.framework */; };
+		20852F91222AF50E00C0E054 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8C222AF50E00C0E054 /* RxSwift.framework */; };
+		20852F94222AF50E00C0E054 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8F222AF50E00C0E054 /* RxCocoa.framework */; };
+		20852F97222AF56900C0E054 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8B222AF50E00C0E054 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		20852F98222AF56900C0E054 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8F222AF50E00C0E054 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		20852F99222AF56900C0E054 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8C222AF50E00C0E054 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		20852FA1222AF6B000C0E054 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8B222AF50E00C0E054 /* RxBlocking.framework */; };
+		20852FA2222AF6B000C0E054 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8F222AF50E00C0E054 /* RxCocoa.framework */; };
+		20852FA3222AF6B000C0E054 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8C222AF50E00C0E054 /* RxSwift.framework */; };
+		20852FA4222AF6B000C0E054 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8E222AF50E00C0E054 /* RxTest.framework */; };
+		20852FA6222AF7F400C0E054 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; };
+		20852FA7222AF7F400C0E054 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; };
+		20852FA8222AF7FC00C0E054 /* RxAtomic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +41,23 @@
 			remoteInfo = BabylonDemo;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20852F95222AF53E00C0E054 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				20852FA8222AF7FC00C0E054 /* RxAtomic.framework in Embed Frameworks */,
+				20852F97222AF56900C0E054 /* RxBlocking.framework in Embed Frameworks */,
+				20852F98222AF56900C0E054 /* RxCocoa.framework in Embed Frameworks */,
+				20852F99222AF56900C0E054 /* RxSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		20630807222AF08A00C68F43 /* BabylonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +74,11 @@
 		20630835222AF16800C68F43 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		2063083B222AF18400C68F43 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		20852F7D222AF2E500C0E054 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20852F8B222AF50E00C0E054 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = "<group>"; };
+		20852F8C222AF50E00C0E054 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
+		20852F8E222AF50E00C0E054 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxTest.framework; sourceTree = "<group>"; };
+		20852F8F222AF50E00C0E054 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = "<group>"; };
+		20852FA5222AF7F400C0E054 /* RxAtomic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxAtomic.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20852F91222AF50E00C0E054 /* RxSwift.framework in Frameworks */,
+				20852FA6222AF7F400C0E054 /* RxAtomic.framework in Frameworks */,
+				20852F90222AF50E00C0E054 /* RxBlocking.framework in Frameworks */,
+				20852F94222AF50E00C0E054 /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +97,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20852FA7222AF7F400C0E054 /* RxAtomic.framework in Frameworks */,
+				20852FA3222AF6B000C0E054 /* RxSwift.framework in Frameworks */,
+				20852FA2222AF6B000C0E054 /* RxCocoa.framework in Frameworks */,
+				20852FA4222AF6B000C0E054 /* RxTest.framework in Frameworks */,
+				20852FA1222AF6B000C0E054 /* RxBlocking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +111,7 @@
 		206307FE222AF08A00C68F43 = {
 			isa = PBXGroup;
 			children = (
+				20852F7F222AF48A00C0E054 /* Frameworks */,
 				20630809222AF08A00C68F43 /* BabylonDemo */,
 				2063081E222AF08C00C68F43 /* BabylonDemoTests */,
 				20630808222AF08A00C68F43 /* Products */,
@@ -164,6 +209,26 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		20852F7F222AF48A00C0E054 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20852F80222AF49400C0E054 /* RxSwift */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		20852F80222AF49400C0E054 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				20852FA5222AF7F400C0E054 /* RxAtomic.framework */,
+				20852F8B222AF50E00C0E054 /* RxBlocking.framework */,
+				20852F8F222AF50E00C0E054 /* RxCocoa.framework */,
+				20852F8C222AF50E00C0E054 /* RxSwift.framework */,
+				20852F8E222AF50E00C0E054 /* RxTest.framework */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,6 +239,7 @@
 				20630803222AF08A00C68F43 /* Sources */,
 				20630804222AF08A00C68F43 /* Frameworks */,
 				20630805222AF08A00C68F43 /* Resources */,
+				20852F95222AF53E00C0E054 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -415,6 +481,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = REMNHN3R45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/RxSwift",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BabylonDemo/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -433,6 +503,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = REMNHN3R45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/RxSwift",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/BabylonDemo/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +526,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = REMNHN3R45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/RxSwift",
+				);
 				INFOPLIST_FILE = BabylonDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -473,6 +551,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = REMNHN3R45;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/RxSwift",
+				);
 				INFOPLIST_FILE = BabylonDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
