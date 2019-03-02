@@ -13,13 +13,17 @@ class AppDelegate: UIResponder {
     
     // MARK: - Properties
     
-    fileprivate let navigationRouter: NavigationRouter = NavigationRouter()
+    fileprivate let dataProvider: DataProvider
+    fileprivate let navigationRouter: NavigationRouter
     let configurators: [ApplicationConfiguratorProtocol]
     var window: UIWindow?
     
     // MARK: - Initializer
     
     override init() {
+        let dataProvider = DataProvider()
+        self.dataProvider = dataProvider
+        self.navigationRouter = NavigationRouter(dataProvider: dataProvider)
         configurators = []
         super.init()
     }

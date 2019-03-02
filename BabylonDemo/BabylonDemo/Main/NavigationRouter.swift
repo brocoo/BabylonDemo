@@ -12,20 +12,23 @@ final class NavigationRouter: NSObject {
     
     // MARK: - Properties
     
+    private let dataProvider: DataProvider
+    
     lazy private(set) var navigationController: UINavigationController = {
         return UINavigationController(rootViewController: makePostsViewController())
     }()
     
     // MARK: - Initializer
     
-    override init() {
+    init(dataProvider: DataProvider) {
+        self.dataProvider = dataProvider
         super.init()
     }
     
     // MARK: -
     
     private func makePostsViewController() -> UIViewController {
-        let viewModel = PostsViewModel()
+        let viewModel = PostsViewModel(dataProvider: dataProvider)
         return PostsViewController(viewModel: viewModel)
     }
 }

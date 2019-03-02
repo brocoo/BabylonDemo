@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "20630806222AF08A00C68F43"
-               BuildableName = "BabylonDemo.app"
-               BlueprintName = "BabylonDemo"
+               BlueprintIdentifier = "20215A99222AFF1F002A1130"
+               BuildableName = "NetworkKit.framework"
+               BlueprintName = "NetworkKit"
                ReferencedContainer = "container:BabylonDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2063081A222AF08C00C68F43"
-               BuildableName = "BabylonDemoTests.xctest"
-               BlueprintName = "BabylonDemoTests"
+               BlueprintIdentifier = "20215AA1222AFF20002A1130"
+               BuildableName = "NetworkKitTests.xctest"
+               BlueprintName = "NetworkKitTests"
                ReferencedContainer = "container:BabylonDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -56,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20630806222AF08A00C68F43"
-            BuildableName = "BabylonDemo.app"
-            BlueprintName = "BabylonDemo"
+            BlueprintIdentifier = "20215A99222AFF1F002A1130"
+            BuildableName = "NetworkKit.framework"
+            BlueprintName = "NetworkKit"
             ReferencedContainer = "container:BabylonDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,16 +75,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20630806222AF08A00C68F43"
-            BuildableName = "BabylonDemo.app"
-            BlueprintName = "BabylonDemo"
+            BlueprintIdentifier = "20215A99222AFF1F002A1130"
+            BuildableName = "NetworkKit.framework"
+            BlueprintName = "NetworkKit"
             ReferencedContainer = "container:BabylonDemo.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,16 +93,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "20630806222AF08A00C68F43"
-            BuildableName = "BabylonDemo.app"
-            BlueprintName = "BabylonDemo"
+            BlueprintIdentifier = "20215A99222AFF1F002A1130"
+            BuildableName = "NetworkKit.framework"
+            BlueprintName = "NetworkKit"
             ReferencedContainer = "container:BabylonDemo.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
