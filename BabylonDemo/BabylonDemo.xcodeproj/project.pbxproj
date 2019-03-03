@@ -35,6 +35,7 @@
 		20215ADC222B066A002A1130 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215ADB222B066A002A1130 /* APIService.swift */; };
 		20215ADE222B08BA002A1130 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215ADB222B066A002A1130 /* APIService.swift */; };
 		20215AE1222B08F7002A1130 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AE0222B08F7002A1130 /* Post.swift */; };
+		20215AE9222C4155002A1130 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AE8222C4155002A1130 /* NetworkMonitor.swift */; };
 		2063080B222AF08A00C68F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063080A222AF08A00C68F43 /* AppDelegate.swift */; };
 		20630812222AF08C00C68F43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20630811222AF08C00C68F43 /* Assets.xcassets */; };
 		20630820222AF08C00C68F43 /* BabylonDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063081F222AF08C00C68F43 /* BabylonDemoTests.swift */; };
@@ -43,7 +44,7 @@
 		20630837222AF16800C68F43 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20630833222AF16800C68F43 /* PostsViewModel.swift */; };
 		20630838222AF16800C68F43 /* PostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20630834222AF16800C68F43 /* PostsViewController.xib */; };
 		20630839222AF16800C68F43 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20630835222AF16800C68F43 /* NavigationRouter.swift */; };
-		2063083C222AF18400C68F43 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063083B222AF18400C68F43 /* DataProvider.swift */; };
+		2063083C222AF18400C68F43 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2063083B222AF18400C68F43 /* DataService.swift */; };
 		20852F7E222AF2E500C0E054 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20852F7D222AF2E500C0E054 /* LaunchScreen.storyboard */; };
 		20852F90222AF50E00C0E054 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8B222AF50E00C0E054 /* RxBlocking.framework */; };
 		20852F91222AF50E00C0E054 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8C222AF50E00C0E054 /* RxSwift.framework */; };
@@ -128,6 +129,7 @@
 		20215AC2222AFFCB002A1130 /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
 		20215ADB222B066A002A1130 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		20215AE0222B08F7002A1130 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		20215AE8222C4155002A1130 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		20630807222AF08A00C68F43 /* BabylonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2063080A222AF08A00C68F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20630811222AF08C00C68F43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 		20630833222AF16800C68F43 /* PostsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		20630834222AF16800C68F43 /* PostsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsViewController.xib; sourceTree = "<group>"; };
 		20630835222AF16800C68F43 /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
-		2063083B222AF18400C68F43 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		2063083B222AF18400C68F43 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		20852F7D222AF2E500C0E054 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20852F8B222AF50E00C0E054 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = "<group>"; };
 		20852F8C222AF50E00C0E054 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxSwift.framework; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				20215ABC222AFFCA002A1130 /* Service.swift */,
 				20215AC1222AFFCB002A1130 /* ServiceConfiguration.swift */,
 				20215AC2222AFFCB002A1130 /* URLParameter.swift */,
+				20215AE8222C4155002A1130 /* NetworkMonitor.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -345,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				20215AD8222B0212002A1130 /* Network */,
-				2063083B222AF18400C68F43 /* DataProvider.swift */,
+				2063083B222AF18400C68F43 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				20215ACD222AFFCB002A1130 /* DecodableResponse.swift in Sources */,
 				20215AD3222AFFCB002A1130 /* ServiceConfiguration.swift in Sources */,
 				20215AC7222AFFCB002A1130 /* RequestMethod.swift in Sources */,
+				20215AE9222C4155002A1130 /* NetworkMonitor.swift in Sources */,
 				20215AC3222AFFCB002A1130 /* ResponseProtocol.swift in Sources */,
 				20215ACB222AFFCB002A1130 /* RequestProtocol.swift in Sources */,
 			);
@@ -580,7 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20215AD9222B0221002A1130 /* Endpoint.swift in Sources */,
-				2063083C222AF18400C68F43 /* DataProvider.swift in Sources */,
+				2063083C222AF18400C68F43 /* DataService.swift in Sources */,
 				20630837222AF16800C68F43 /* PostsViewModel.swift in Sources */,
 				20630836222AF16800C68F43 /* PostsViewController.swift in Sources */,
 				2063080B222AF08A00C68F43 /* AppDelegate.swift in Sources */,
@@ -639,6 +643,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/Reachibility",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Frameworks/NetworkKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -669,6 +677,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/Reachibility",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Frameworks/NetworkKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (

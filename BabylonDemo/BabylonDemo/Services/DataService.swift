@@ -1,5 +1,5 @@
 //
-//  DataProvider.swift
+//  DataService.swift
 //  BabylonHealthDemo
 //
 //  Created by Julien Ducret on 3/2/19.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class DataProvider: NSObject {
+final class DataService: NSObject {
     
     // MARK: - Properties
     
@@ -27,7 +27,7 @@ final class DataProvider: NSObject {
 
 // MARK: -
 
-extension DataProvider: ApplicationConfiguratorProtocol {
+extension DataService: ApplicationConfiguratorProtocol {
     
     // MARK: -
     
@@ -39,7 +39,7 @@ extension DataProvider: ApplicationConfiguratorProtocol {
 
 // MARK: -
 
-extension DataProvider: PostsDataProviderProtocol {
+extension DataService: PostsDataProviderProtocol {
     
     // MARK: - PostsDataProviderProtocol
     

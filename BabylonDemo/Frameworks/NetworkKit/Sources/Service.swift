@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Network
 
 // MARK: -
 
@@ -16,35 +17,52 @@ public final class Service {
     
     let session: URLSession
     let configuration: ServiceConfiguration
+    private let networkMonitor: NetworkMonitor
+    private var debug: Bool
     
     // MARK: - Initializer
     
-    public init(session: URLSession, configuration: ServiceConfiguration) {
+    public init(session: URLSession, configuration: ServiceConfiguration, debug: Bool = false) {
         self.session = session
         self.configuration = configuration
+        self.debug = debug
+        self.networkMonitor = NetworkMonitor()
     }
     
-    // MARK: - Request perfoming method
+    // MARK: - Public methods
     
-    public func perform<T: ResponseProtocol>(request: RequestProtocol, onCompletion: @escaping (T) -> Void) throws {
+    public func perform<T: ResponseProtocol>(request: RequestProtocol, onCompletion completion: @escaping (T) -> Void) throws {
         let urlRequest = try makeURLRequest(for: request)
         let task = session.dataTask(with: urlRequest) { [weak self] (data, urlResponse, error) in
             guard let `self` = self else { return }
-            let response: T = self.makeResponse(from: request, data: data, urlResponse: urlResponse, error: error)
-            print(response)
-            onCompletion(response)
+            let serviceResponse: T = {
+                if error != nil, !self.networkMonitor.isConnected, let cachedResponse = self.cachedURLResponse(for: urlRequest) {
+                    return self.makeResponse(from: request, data: cachedResponse.data, urlResponse: cachedResponse.response, error: error)
+                } else {
+                    return self.makeResponse(from: request, data: data, urlResponse: urlResponse, error: error)
+                }
+            }()
+            if self.debug { print(serviceResponse) }
+            completion(serviceResponse)
         }
         task.resume()
     }
     
     // MARK: - Private helper methods
     
+    private func cachedURLResponse(for request: URLRequest) -> CachedURLResponse? {
+        return session.configuration.urlCache?.cachedResponse(for: request)
+    }
+    
     private func makeResponse<T: ResponseProtocol>(from request: RequestProtocol, data: Data?, urlResponse: URLResponse?, error: Error?) -> T {
         let dataResult: Result<Data> = {
             if let data = data {
                 return Result(data)
             } else {
-                let serviceError = error ?? ServiceError.unknown(request: request, response: urlResponse)
+                let serviceError: Error = {
+                    guard networkMonitor.isConnected else { return ServiceError.noNetwork }
+                    return error ?? ServiceError.unknown(request: request, response: urlResponse)
+                }()
                 return Result(serviceError)
             }
         }()
@@ -55,7 +73,8 @@ public final class Service {
         let components = makeComponents(for: request)
         guard let url = components.url else { throw ServiceError.urlFailedBuilding(components: components) }
         var urlRequest = URLRequest(url: url)
-        urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        urlRequest.cachePolicy = configuration.cachePolicy
+        urlRequest.timeoutInterval = configuration.timeOutInterval
         urlRequest.allHTTPHeaderFields = configuration.defaultHTTPHeaders.merging(request.headers, uniquingKeysWith: { $1 })
         return urlRequest
     }
@@ -74,7 +93,7 @@ public final class Service {
 
 enum ServiceError: Error {
     
-    case serviceNotInitialized
+    case noNetwork
     case unknown(request: RequestProtocol, response: URLResponse?)
     case urlFailedBuilding(components: URLComponents)
 }

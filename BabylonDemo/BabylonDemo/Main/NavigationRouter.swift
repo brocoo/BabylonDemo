@@ -12,7 +12,7 @@ final class NavigationRouter: NSObject {
     
     // MARK: - Properties
     
-    private let dataProvider: DataProvider
+    private let dataProvider: DataService
     
     lazy private(set) var navigationController: UINavigationController = {
         return UINavigationController(rootViewController: makePostsViewController())
@@ -20,7 +20,7 @@ final class NavigationRouter: NSObject {
     
     // MARK: - Initializer
     
-    init(dataProvider: DataProvider) {
+    init(dataProvider: DataService) {
         self.dataProvider = dataProvider
         super.init()
     }

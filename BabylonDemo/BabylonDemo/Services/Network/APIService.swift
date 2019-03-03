@@ -18,6 +18,7 @@ final class APIService {
     private enum Constants {
         static let urlScheme: String = "https"
         static let urlHost: String = "jsonplaceholder.typicode.com"
+        static let timeOutInterval: TimeInterval = 15.0
     }
     
     // MARK: - Properties
@@ -27,9 +28,18 @@ final class APIService {
     // MARK: -
     
     private func makeNetworkService() -> NetworkKit.Service {
-        let session = URLSession.shared
+        
+        let session: URLSession = {
+            let configuration = URLSessionConfiguration.default
+            configuration.urlCache = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
+            return URLSession(configuration: configuration)
+        }()
+        
         let serviceConfiguration = ServiceConfiguration(urlScheme: Constants.urlScheme, urlHost: Constants.urlHost)
-        return Service(session: session, configuration: serviceConfiguration)
+            .withCachePolicy(.useProtocolCachePolicy)
+            .withTimeOutInterval(Constants.timeOutInterval)
+        
+        return Service(session: session, configuration: serviceConfiguration, debug: true)
     }
     
     // MARK: -

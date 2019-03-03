@@ -14,8 +14,10 @@ public struct ServiceConfiguration {
     
     let urlScheme: String
     let urlHost: String
-    var defaultHTTPHeaders: [String: String]
-    var defaultURLParameters: [URLParameter]
+    private(set) var defaultHTTPHeaders: [String: String]
+    private(set) var defaultURLParameters: [URLParameter]
+    private(set) var cachePolicy: NSURLRequest.CachePolicy
+    private(set) var timeOutInterval: TimeInterval
     
     // MARK: - Initializer
     
@@ -24,19 +26,33 @@ public struct ServiceConfiguration {
         self.urlHost = urlHost
         self.defaultHTTPHeaders = [:]
         self.defaultURLParameters = []
+        self.cachePolicy = .useProtocolCachePolicy
+        self.timeOutInterval = 60
     }
     
     // MARK: - Helper methods
     
-    func withDefaultHTTPHeaders(_ headers: [String: String]) -> ServiceConfiguration {
+    public func withDefaultHTTPHeaders(_ headers: [String: String]) -> ServiceConfiguration {
         var serviceConfiguration = self
         serviceConfiguration.defaultHTTPHeaders = headers
         return serviceConfiguration
     }
     
-    func withDefaultURLParameters(_ parameters: [URLParameter]) -> ServiceConfiguration {
+    public func withDefaultURLParameters(_ parameters: [URLParameter]) -> ServiceConfiguration {
         var serviceConfiguration = self
         serviceConfiguration.defaultURLParameters = parameters
+        return serviceConfiguration
+    }
+    
+    public func withCachePolicy(_ cachePolicy: NSURLRequest.CachePolicy) -> ServiceConfiguration {
+        var serviceConfiguration = self
+        serviceConfiguration.cachePolicy = cachePolicy
+        return serviceConfiguration
+    }
+    
+    public func withTimeOutInterval(_ timeOutInterval: TimeInterval) -> ServiceConfiguration {
+        var serviceConfiguration = self
+        serviceConfiguration.timeOutInterval = timeOutInterval
         return serviceConfiguration
     }
 }
