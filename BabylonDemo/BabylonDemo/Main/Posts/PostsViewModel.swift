@@ -12,7 +12,7 @@ import RxCocoa
 
 protocol PostsDataProviderProtocol {
     
-    func fetchPosts() -> Single<[Post]>
+    func fetchAuthoredPosts() -> Single<[AuthoredPost]>
 }
 
 final class PostsViewModel: NSObject {
@@ -20,7 +20,7 @@ final class PostsViewModel: NSObject {
     // MARK: - Properties
     
     let dataProvider: PostsDataProviderProtocol
-    let postsRelay: BehaviorRelay<[Post]>
+    let authoredPostsRelay: BehaviorRelay<[AuthoredPost]>
     let reloadTrigger: PublishRelay<Void>
     let disposeBag: DisposeBag
     
@@ -28,7 +28,7 @@ final class PostsViewModel: NSObject {
     
     init(dataProvider: PostsDataProviderProtocol) {
         self.dataProvider = dataProvider
-        self.postsRelay = BehaviorRelay(value: [])
+        self.authoredPostsRelay = BehaviorRelay(value: [])
         self.reloadTrigger = PublishRelay()
         self.disposeBag = DisposeBag()
         super.init()
@@ -38,13 +38,17 @@ final class PostsViewModel: NSObject {
     private func setupBindings() {
         reloadTrigger
             .asDriver(onErrorJustReturn: ())
-            .flatMapLatest { self.dataProvider.fetchPosts().asDriver(onErrorJustReturn: []) }
-            .drive(postsRelay)
+            .flatMapLatest { _ in
+                return self.dataProvider
+                    .fetchAuthoredPosts()
+                    .asDriver(onErrorJustReturn: [])
+            }
+            .drive(authoredPostsRelay)
             .disposed(by: disposeBag)
     }
 }
 
 extension PostsViewModel: PostsViewModelProtocol {
     
-    var posts: Driver<[Post]> { return postsRelay.asDriver(onErrorJustReturn: []) }
+    var authoredPosts: Driver<[AuthoredPost]> { return authoredPostsRelay.asDriver(onErrorJustReturn: []) }
 }

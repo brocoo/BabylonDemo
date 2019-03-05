@@ -1,8 +1,8 @@
 //
-//  PostsViewController.swift
+//  PostDetailViewController.swift
 //  BabylonDemo
 //
-//  Created by Julien Ducret on 3/1/19.
+//  Created by Julien Ducret on 3/4/19.
 //  Copyright © 2019 Julien Ducret. All rights reserved.
 //
 
@@ -10,28 +10,28 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol PostsViewModelProtocol {
+protocol PostDetailViewModelProtocol {
     
-    var authoredPosts: Driver<[AuthoredPost]> { get }
+    var authoredPost: AuthoredPost { get }
+    var comments: Driver<[Comment]> { get }
     var reloadTrigger: PublishRelay<Void> { get }
 }
 
-final class PostsViewController: UIViewController {
+final class PostDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel: PostsViewModelProtocol
+    private let viewModel: PostDetailViewModelProtocol
     unowned let navigationService: NavigationServiceProtocol
-    private lazy var collectionViewAdapter: CollectionViewAdapter<AuthoredPostCell> = CollectionViewAdapter(collectionView: collectionView)
     private let disposeBag = DisposeBag()
-    
+
     // MARK: - IBOutlet properties
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Initializers
     
-    init(viewModel: PostsViewModelProtocol, navigationService: NavigationServiceProtocol) {
+    init(viewModel: PostDetailViewModelProtocol, navigationService: NavigationServiceProtocol) {
         self.viewModel = viewModel
         self.navigationService = navigationService
         super.init(nibName: nil, bundle: nil)
@@ -40,20 +40,17 @@ final class PostsViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("Can't be initialized from Storyboard")
     }
-    
-    // MARK: - UIViewController life cycle
 
+    // MARK: - UIViewController life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupBindings()
-        viewModel.reloadTrigger.accept(())
     }
     
     // MARK: - Setup
     
     private func setupUI() {
-        title = "Posts"
+        title = viewModel.authoredPost.post.title
         collectionView.refreshControl = UIRefreshControl(frame: .zero)
         collectionView.backgroundColor = UIColor.groupTableViewBackground
     }
@@ -67,34 +64,22 @@ final class PostsViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel
-            .authoredPosts
+            .comments
             .drive(onNext: { [weak self] (posts) in
                 self?.collectionView.refreshControl?.endRefreshing()
             }).disposed(by: disposeBag)
-                
+        
         let width = collectionView.rx
             .bounds
             .map { $0.size.width }
             .distinctUntilChanged()
             .asDriver(onErrorDriveWith: Driver.empty())
         
-        let authoredPosts = viewModel
-            .authoredPosts
-            .distinctUntilChanged()
-        
-        Driver
-            .combineLatest(authoredPosts, width)
-            .map { $0.0.asCells(collectionViewWidth: $0.1) }
-            .drive(collectionViewAdapter)
-            .disposed(by: disposeBag)
-        
 //        Driver
-//            .combineLatest(authoredPosts, width)
-//            .map { (<#([AuthoredPost], CGFloat)#>) -> R in
-//
-//            }.drive(collectionViewAdapter)
+//            .combineLatest(viewModel.authoredPosts, width)
+//            .drive(collectionViewManager)
 //            .disposed(by: disposeBag)
-        
+//
 //        collectionViewManager
 //            .onPostSelection
 //            .emit(onNext: { [weak self] (authoredPost) in

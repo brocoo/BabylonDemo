@@ -25,4 +25,15 @@ extension RequestProtocol {
     
     // MARK: - Default properties
     
+    var body: RequestBody? {
+        return nil
+    }
+    
+    var headers: [String: String] {
+        return [:]
+    }
+    
+    var parameters: [URLParameter] {
+        return []
+    }
 }

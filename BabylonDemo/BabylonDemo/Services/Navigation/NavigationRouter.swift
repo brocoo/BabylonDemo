@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol NavigationServiceProtocol: class {
+    
+    func navigate(to appPath: AppPath)
+}
+
 final class NavigationRouter: NSObject {
     
     // MARK: - Properties
@@ -29,6 +34,20 @@ final class NavigationRouter: NSObject {
     
     private func makePostsViewController() -> UIViewController {
         let viewModel = PostsViewModel(dataProvider: dataProvider)
-        return PostsViewController(viewModel: viewModel)
+        return PostsViewController(viewModel: viewModel, navigationService: self)
+    }
+    
+    private func makePostDetailsViewController(from authoredPost: AuthoredPost) {
+//        let viewModel = PostsViewModel(dataProvider: dataProvider)
+//        return PostsViewController(viewModel: viewModel, router: self)
+    }
+}
+
+extension NavigationRouter: NavigationServiceProtocol {
+    
+    // MARK: -
+    
+    func navigate(to appPath: AppPath) {
+        
     }
 }

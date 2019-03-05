@@ -9,19 +9,17 @@
 import Foundation
 import NetworkKit
 
-enum Endpoint: RequestProtocol {
+enum Endpoint {
 
     // MARK: - Cases
 
     case posts
     case users
-    case comments
+    case comments(postId: UInt)
+    
+}
 
-    // MARK: - Properties
-
-    private var page: Int? {
-        return nil
-    }
+extension Endpoint: RequestProtocol {
 
     // MARK: - RequestProtocol
 
@@ -50,8 +48,9 @@ enum Endpoint: RequestProtocol {
     }
 
     var parameters: [URLParameter] {
-        var urlParameters = [URLParameter]()
-        if let page = page { urlParameters.append(key: "page", value: "\(page)") }
-        return urlParameters
+        switch self {
+        case .comments(let postId): return [URLParameter(key: "postId", value: "\(postId)")]
+        default: return []
+        }
     }
 }

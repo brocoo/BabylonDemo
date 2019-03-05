@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PostCollectionViewCell" customModule="BabylonDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azW-hf-lUf" userLabel="Label - Title">
+                        <rect key="frame" x="15" y="15" width="345" height="20.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="642-dj-1iC" userLabel="Label - Author">
+                        <rect key="frame" x="15" y="50.5" width="345" height="16"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="642-dj-1iC" firstAttribute="top" secondItem="azW-hf-lUf" secondAttribute="bottom" constant="15" id="6bA-0z-fQc"/>
+                <constraint firstItem="azW-hf-lUf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="RLG-it-aWy"/>
+                <constraint firstAttribute="trailing" secondItem="642-dj-1iC" secondAttribute="trailing" constant="15" id="Rpw-hw-Hmc"/>
+                <constraint firstItem="azW-hf-lUf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="b6f-fF-JfM"/>
+                <constraint firstAttribute="trailing" secondItem="azW-hf-lUf" secondAttribute="trailing" constant="15" id="bwP-Ni-r2T"/>
+                <constraint firstItem="642-dj-1iC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="ifv-w2-8HH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="273" height="217"/>
+            <connections>
+                <outlet property="authorLabel" destination="642-dj-1iC" id="Cq3-EZ-ZdB"/>
+                <outlet property="titleLabel" destination="azW-hf-lUf" id="crU-7x-Q1p"/>
+            </connections>
+            <point key="canvasLocation" x="-34.399999999999999" y="69.715142428785612"/>
+        </collectionViewCell>
+    </objects>
+</document>
