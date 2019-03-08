@@ -17,7 +17,7 @@ final class NavigationRouter: NSObject {
     
     // MARK: - Properties
     
-    private let dataProvider: DataService
+    private let dataService: DataService
     
     lazy private(set) var navigationController: UINavigationController = {
         return UINavigationController(rootViewController: makePostsViewController())
@@ -25,21 +25,21 @@ final class NavigationRouter: NSObject {
     
     // MARK: - Initializer
     
-    init(dataProvider: DataService) {
-        self.dataProvider = dataProvider
+    init(dataService: DataService) {
+        self.dataService = dataService
         super.init()
     }
     
     // MARK: -
     
-    private func makePostsViewController() -> UIViewController {
-        let viewModel = PostsViewModel(dataProvider: dataProvider)
+    fileprivate func makePostsViewController() -> UIViewController {
+        let viewModel = PostsViewModel(dataProvider: dataService)
         return PostsViewController(viewModel: viewModel, navigationService: self)
     }
     
-    private func makePostDetailsViewController(from authoredPost: AuthoredPost) {
-//        let viewModel = PostsViewModel(dataProvider: dataProvider)
-//        return PostsViewController(viewModel: viewModel, router: self)
+    fileprivate func makePostDetailsViewController(from authoredPost: AuthoredPost) -> UIViewController {
+        let viewModel = PostDetailViewModel(dataService: dataService, authoredPost: authoredPost)
+        return PostDetailViewController(viewModel: viewModel, navigationService: self)
     }
 }
 
@@ -48,6 +48,12 @@ extension NavigationRouter: NavigationServiceProtocol {
     // MARK: -
     
     func navigate(to appPath: AppPath) {
-        
+        switch appPath {
+        case .posts:
+            navigationController.popToRootViewController(animated: true)
+        case .postDetail(let post):
+            let viewController = makePostDetailsViewController(from: post)
+            navigationController.pushViewController(viewController, animated: true)
+        }
     }
 }

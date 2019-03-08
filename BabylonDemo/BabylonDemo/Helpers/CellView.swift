@@ -8,4 +8,4 @@
 
 import UIKit
 
-typealias CellView = (UICollectionViewCell & ReusableView & NibLoadableView)
+typealias CollectionViewCell = UICollectionViewCell & ReusableView & ConfigurableView & NibLoadableView

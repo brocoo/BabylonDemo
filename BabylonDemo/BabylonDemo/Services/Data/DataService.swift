@@ -23,7 +23,15 @@ final class DataService: NSObject {
         super.init()
     }
     
-    // MARK: -
+    // MARK: - Private helpers
+    
+    fileprivate func fetchPosts() -> Single<[Post]> {
+        return apiService.performCall(to: .posts)
+    }
+    
+    fileprivate func fetchUsers() -> Single<[User]> {
+        return apiService.performCall(to: .users)
+    }
 }
 
 // MARK: -
@@ -34,16 +42,6 @@ extension DataService: ApplicationConfiguratorProtocol {
     
     func configure(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
         
-    }
-    
-    // MARK: - Private helpers
-    
-    fileprivate func fetchPosts() -> Single<[Post]> {
-        return apiService.performCall(to: .posts)
-    }
-    
-    fileprivate func fetchUsers() -> Single<[User]> {
-        return apiService.performCall(to: .users)
     }
 }
 
@@ -71,6 +69,7 @@ extension DataService: PostDetailDataServiceProtocol {
     // MARK: - PostDetailViewModelProtocol
     
     func fetchComments(forPostId postId: UInt) -> Single<[Comment]> {
-        return apiService.performCall(to: .comments(postId: postId))
+        return apiService
+            .performCall(to: .comments(postId: postId))
     }
 }

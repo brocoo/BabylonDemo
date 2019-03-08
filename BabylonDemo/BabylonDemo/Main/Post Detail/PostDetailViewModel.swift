@@ -34,17 +34,19 @@ final class PostDetailViewModel: NSObject {
         self.authoredPost = authoredPost
         self.disposeBag = DisposeBag()
         super.init()
+        setupBindings()
     }
     
     private func setupBindings() {
         reloadTrigger
             .asDriver(onErrorJustReturn: ())
-            .flatMapLatest { [weak self] _ -> Driver<[Comment]> in
+            .withLatestFrom(Driver.just(authoredPost.post.id))
+            .flatMapLatest { [weak self] (postId) -> Driver<[Comment]> in
                 guard let `self` = self else { return Driver.empty() }
                 return self.dataService
-                    .fetchComments(forPostId: self.authoredPost.post.id)
-                    .asDriver(onErrorJustReturn: []) }
-            .drive(commentsRelay)
+                    .fetchComments(forPostId: postId)
+                    .asDriver(onErrorJustReturn: [])
+            }.drive(commentsRelay)
             .disposed(by: disposeBag)
     }
 }

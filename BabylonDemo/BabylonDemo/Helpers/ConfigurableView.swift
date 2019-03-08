@@ -13,3 +13,20 @@ protocol ConfigurableView {
     associatedtype Model
     func configure(with model: Model)
 }
+
+struct AnyConfigurableView: ConfigurableView {
+    
+    private let _configure: (Any) -> Void
+    
+    init<T: ConfigurableView>(_ row: T) {
+        _configure = { object in
+            guard let model = object as? T.Model else { return }
+            row.configure(with: model)
+        }
+    }
+
+    func configure(with model: Any) {
+        _configure(model)
+    }
+}
+

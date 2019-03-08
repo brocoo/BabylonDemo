@@ -10,24 +10,25 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class CollectionViewAdapter<T: CellViewRepresentable>: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
     
     private let collectionView: UICollectionView
-    private let onSelectedRelay: PublishRelay<T>
-    private(set) lazy var onSelected: Signal<T> = self.onSelectedRelay.asSignal()
+    private let _onRowSelected: PublishRelay<Int> = PublishRelay()
+    private(set) lazy var onRowSelected: Signal<Int> = self._onRowSelected.asSignal()
     
-    fileprivate var dataSource: [T] {
-        didSet { collectionView.reloadData() }
+    fileprivate var dataSource: [CollectionViewDataSourceItem] = [] {
+        didSet {
+            dataSource.registerCells(on: collectionView)
+            collectionView.reloadData()
+        }
     }
     
     // MARK: - Initializer
     
     init(collectionView: UICollectionView) {
         self.collectionView = collectionView
-        self.onSelectedRelay = PublishRelay()
-        self.dataSource = []
         super.init()
         setup()
     }
@@ -37,7 +38,6 @@ final class CollectionViewAdapter<T: CellViewRepresentable>: NSObject, UICollect
     private func setup() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        T.registerCollectionViewCell(for: collectionView)
     }
     
     // MARK: - UICollectionViewDataSource protocol methods
@@ -51,7 +51,7 @@ final class CollectionViewAdapter<T: CellViewRepresentable>: NSObject, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return dataSource[indexPath.row].asConfiguredCollectionViewCell(dequeuedFrom: collectionView, atIndexPath: indexPath)
+        return dataSource[indexPath.row].dequeueConfiguredCell(from: collectionView, at: indexPath)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout protocol methods
@@ -71,15 +71,15 @@ final class CollectionViewAdapter<T: CellViewRepresentable>: NSObject, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        onSelectedRelay.accept(dataSource[indexPath.row])
+        _onRowSelected.accept(indexPath.row)
     }
 }
 
-extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.DriverSharingStrategy {
+extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.DriverSharingStrategy, E == [CollectionViewDataSourceItem] {
     
     // MARK: - Driver helper methods
     
-    func drive<T: CellViewRepresentable>(_ collectionViewAdapter: CollectionViewAdapter<T>) -> Disposable where E == [T] {
+    func drive(_ collectionViewAdapter: CollectionViewAdapter) -> Disposable {
         return drive(onNext: { [weak collectionViewAdapter] (dataSource) in
             collectionViewAdapter?.dataSource = dataSource
         })

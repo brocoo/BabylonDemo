@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PostCollectionViewCell: CellView {
+final class PostCollectionViewCell: CollectionViewCell {
     
     // MARK: - UIConstants
     
@@ -51,7 +51,7 @@ final class PostCollectionViewCell: CellView {
     }
 }
 
-extension PostCollectionViewCell: SizeCacheableView {
+extension PostCollectionViewCell: SizeConfigurableView {
     
     // MARK: - ConfigurableView protocol method
     

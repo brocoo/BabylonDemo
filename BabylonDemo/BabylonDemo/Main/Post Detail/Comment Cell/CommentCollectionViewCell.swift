@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class CommentCollectionViewCell: CellView {
+final class CommentCollectionViewCell: CollectionViewCell {
 
     // MARK: - UIConstants
     
     fileprivate enum UIConstants {
         static var bodyFont: UIFont { return UIFont.preferredFont(forTextStyle: .body) }
-        static var emailFont: UIFont { return UIFont.preferredFont(forTextStyle: .footnote) }
+        static var emailFont: UIFont { return UIFont.preferredFont(forTextStyle: .subheadline) }
         static let verticalSpacing: CGFloat = 15.0
         static let horizontalSpacing: CGFloat = 15.0
     }
@@ -43,24 +43,26 @@ final class CommentCollectionViewCell: CellView {
         bodyLabel.font = UIConstants.bodyFont
         emailLabel.font = UIConstants.emailFont
     }
-    
-    func configure(body: String, email: String) {
-        bodyLabel.text = body
-        emailLabel.text = email
-    }
 }
 
-extension CommentCollectionViewCell {
+extension CommentCollectionViewCell: SizeConfigurableView {
     
-    // MARK: - Sizing
+    // MARK: - ConfigurableView protocol method
     
-    static func height(forBody body: String, email: String, forWidth width: CGFloat) -> CGFloat {
+    func configure(with model: Comment) {
+        bodyLabel.text = model.body
+        emailLabel.text = model.email
+    }
+    
+    // MARK: - SizeConfigurableView protocol method
+    
+    static func height(with model: Comment, forWidth width: CGFloat) -> CGFloat {
         let contentWidth = width - (UIConstants.horizontalSpacing * 2)
         var height: CGFloat = 0
         height += UIConstants.verticalSpacing
-        height += body.height(forWidth: contentWidth, font: UIConstants.bodyFont)
+        height += model.body.height(forWidth: contentWidth, font: UIConstants.bodyFont)
         height += UIConstants.verticalSpacing
-        height += email.height(forWidth: contentWidth, font: UIConstants.emailFont)
+        height += model.email.height(forWidth: contentWidth, font: UIConstants.emailFont)
         height += UIConstants.verticalSpacing
         return height
     }

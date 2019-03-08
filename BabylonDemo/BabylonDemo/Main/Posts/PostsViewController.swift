@@ -22,7 +22,7 @@ final class PostsViewController: UIViewController {
     
     private let viewModel: PostsViewModelProtocol
     unowned let navigationService: NavigationServiceProtocol
-    private lazy var collectionViewAdapter: CollectionViewAdapter<AuthoredPostCell> = CollectionViewAdapter(collectionView: collectionView)
+    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
     private let disposeBag = DisposeBag()
     
     // MARK: - IBOutlet properties
@@ -84,21 +84,17 @@ final class PostsViewController: UIViewController {
         
         Driver
             .combineLatest(authoredPosts, width)
-            .map { $0.0.asCells(collectionViewWidth: $0.1) }
+            .map { $0.0.asDataSource(collectionViewWidth: $0.1) }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)
         
-//        Driver
-//            .combineLatest(authoredPosts, width)
-//            .map { (<#([AuthoredPost], CGFloat)#>) -> R in
-//
-//            }.drive(collectionViewAdapter)
-//            .disposed(by: disposeBag)
-        
-//        collectionViewManager
-//            .onPostSelection
-//            .emit(onNext: { [weak self] (authoredPost) in
-//                self?.navigationService.navigate(to: .postDetail(authoredPost))
-//            }).disposed(by: disposeBag)
+        collectionViewAdapter
+            .onRowSelected
+            .asDriver(onErrorDriveWith: Driver.empty())
+            .withLatestFrom(authoredPosts) { (index, authoredPosts) -> AuthoredPost in
+                return authoredPosts[index]
+            }.drive(onNext: { [weak self] (authoredPost) in
+                self?.navigationService.navigate(to: .postDetail(authoredPost))
+            }).disposed(by: disposeBag)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PostDetailCollectionViewCell: CellView {
+final class PostDetailCollectionViewCell: CollectionViewCell {
 
     // MARK: - UIConstants
     
@@ -16,9 +16,7 @@ final class PostDetailCollectionViewCell: CellView {
         static var titleFont: UIFont { return UIFont.preferredFont(forTextStyle: .headline) }
         static var bodyFont: UIFont { return UIFont.preferredFont(forTextStyle: .body) }
         static var authorFont: UIFont { return UIFont.preferredFont(forTextStyle: .footnote) }
-        static var commentsCountFont: UIFont { return UIFont.preferredFont(forTextStyle: .caption2) }
-        static let verticalSpacing: CGFloat = 15.0
-        static let horizontalSpacing: CGFloat = 15.0
+        static let spacing: CGFloat = 15.0
     }
     
     // MARK: - Properties
@@ -26,7 +24,6 @@ final class PostDetailCollectionViewCell: CellView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var commentsCountLabel: UILabel!
 
     // MARK: - UICollectionViewCell life cycle
     
@@ -47,33 +44,33 @@ final class PostDetailCollectionViewCell: CellView {
         titleLabel.font = UIConstants.titleFont
         bodyLabel.font = UIConstants.bodyFont
         authorLabel.font = UIConstants.authorFont
-        commentsCountLabel.font = UIConstants.commentsCountFont
-    }
-    
-    func configure(title: String, body: String, author: String, commentsCount: String) {
-        titleLabel.text = title
-        bodyLabel.text = body
-        authorLabel.text = author
-        commentsCountLabel.text = commentsCount
     }
 }
 
-extension PostDetailCollectionViewCell {
+// MARK: -
+
+extension PostDetailCollectionViewCell: SizeConfigurableView {
     
-    // MARK: - Sizing
+    // MARK: - ConfigurableView protocol method
     
-    static func height(forTitle title: String, body: String, author: String, commentsCount: String, forWidth width: CGFloat) -> CGFloat {
-        let contentWidth = width - (UIConstants.horizontalSpacing * 2)
+    func configure(with model: AuthoredPost) {
+        titleLabel.text = model.post.title
+        bodyLabel.text = model.post.body
+        authorLabel.text = model.author.username
+    }
+    
+    // MARK: - SizeConfigurableView protocol method
+    
+    static func height(with model: AuthoredPost, forWidth width: CGFloat) -> CGFloat {
+        let contentWidth = width - (UIConstants.spacing * 2)
         var height: CGFloat = 0
-        height += UIConstants.verticalSpacing
-        height += title.height(forWidth: contentWidth, font: UIConstants.titleFont)
-        height += UIConstants.verticalSpacing
-        height += body.height(forWidth: contentWidth, font: UIConstants.bodyFont)
-        height += UIConstants.verticalSpacing
-        height += author.height(forWidth: contentWidth, font: UIConstants.authorFont)
-        height += UIConstants.verticalSpacing
-        height += commentsCount.height(forWidth: contentWidth, font: UIConstants.commentsCountFont)
-        height += UIConstants.verticalSpacing
+        height += UIConstants.spacing
+        height += model.post.title.height(forWidth: contentWidth, font: UIConstants.titleFont)
+        height += UIConstants.spacing
+        height += model.post.body.height(forWidth: contentWidth, font: UIConstants.bodyFont)
+        height += UIConstants.spacing
+        height += model.author.username.height(forWidth: contentWidth, font: UIConstants.authorFont)
+        height += UIConstants.spacing
         return height
     }
 }

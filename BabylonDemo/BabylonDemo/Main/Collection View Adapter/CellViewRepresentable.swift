@@ -8,16 +8,13 @@
 
 import UIKit
 
-typealias CollectionViewCell = UICollectionViewCell & ReusableView & ConfigurableView & NibLoadableView
-
 // MARK: -
 
 protocol CellViewRepresentable {
     
     associatedtype CellType: CollectionViewCell
-    
+    var cellType: CellType.Type { get }
     var model: CellType.Model { get }
-    var cachedSize: CGSize { get }
 }
 
 // MARK: -
@@ -26,7 +23,7 @@ extension CellViewRepresentable {
     
     // MARK: - Helper methods
     
-    static func registerCollectionViewCell(for collectionView: UICollectionView) {
+    func registerCollectionViewCell(for collectionView: UICollectionView) {
         collectionView.registerReusableCell(CellType.self)
     }
     
@@ -39,15 +36,5 @@ extension CellViewRepresentable {
     func asCollectionViewCell(dequeuedFrom collectionView: UICollectionView, atIndexPath indexPath: IndexPath) -> CellType {
         let cell: CellType = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         return cell
-    }
-}
-
-
-protocol DataSourceItemProtocol { }
-
-extension DataSourceItemProtocol where Self: CellViewRepresentable {
-    
-    func dequeued(from collectionView: UICollectionView, atIndexPath indexPath: IndexPath) -> UICollectionViewCell {
-        return asConfiguredCollectionViewCell(dequeuedFrom: collectionView, atIndexPath: indexPath)
     }
 }

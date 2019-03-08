@@ -13,7 +13,7 @@ class AppDelegate: UIResponder {
     
     // MARK: - Properties
     
-    fileprivate let dataProvider: DataService
+    fileprivate let dataService: DataService
     fileprivate let navigationRouter: NavigationRouter
     let configurators: [ApplicationConfiguratorProtocol]
     var window: UIWindow?
@@ -21,9 +21,9 @@ class AppDelegate: UIResponder {
     // MARK: - Initializer
     
     override init() {
-        let dataProvider = DataService()
-        self.dataProvider = dataProvider
-        self.navigationRouter = NavigationRouter(dataProvider: dataProvider)
+        let dataService = DataService()
+        self.dataService = dataService
+        self.navigationRouter = NavigationRouter(dataService: dataService)
         configurators = []
         super.init()
     }

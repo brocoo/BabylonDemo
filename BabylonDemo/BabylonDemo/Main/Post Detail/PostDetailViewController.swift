@@ -22,6 +22,7 @@ final class PostDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: PostDetailViewModelProtocol
+    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
     unowned let navigationService: NavigationServiceProtocol
     private let disposeBag = DisposeBag()
 
@@ -45,6 +46,9 @@ final class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBindings()
+        viewModel.reloadTrigger.accept(())
     }
     
     // MARK: - Setup
@@ -75,15 +79,10 @@ final class PostDetailViewController: UIViewController {
             .distinctUntilChanged()
             .asDriver(onErrorDriveWith: Driver.empty())
         
-//        Driver
-//            .combineLatest(viewModel.authoredPosts, width)
-//            .drive(collectionViewManager)
-//            .disposed(by: disposeBag)
-//
-//        collectionViewManager
-//            .onPostSelection
-//            .emit(onNext: { [weak self] (authoredPost) in
-//                self?.navigationService.navigate(to: .postDetail(authoredPost))
-//            }).disposed(by: disposeBag)
+        Driver
+            .combineLatest(Driver.just(viewModel.authoredPost), viewModel.comments, width)
+            .map { PostDetailDataSource(post: $0.0, comments: $0.1, forWidth: $0.2).asDataSource() }
+            .drive(collectionViewAdapter)
+            .disposed(by: disposeBag)
     }
 }
