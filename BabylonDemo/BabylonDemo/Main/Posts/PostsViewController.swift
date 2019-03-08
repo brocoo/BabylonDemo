@@ -71,19 +71,13 @@ final class PostsViewController: UIViewController {
             .drive(onNext: { [weak self] (posts) in
                 self?.collectionView.refreshControl?.endRefreshing()
             }).disposed(by: disposeBag)
-                
-        let width = collectionView.rx
-            .bounds
-            .map { $0.size.width }
-            .distinctUntilChanged()
-            .asDriver(onErrorDriveWith: Driver.empty())
         
         let authoredPosts = viewModel
             .authoredPosts
             .distinctUntilChanged()
         
         Driver
-            .combineLatest(authoredPosts, width)
+            .combineLatest(authoredPosts, collectionView.rx.width)
             .map { $0.0.asDataSource(collectionViewWidth: $0.1) }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)

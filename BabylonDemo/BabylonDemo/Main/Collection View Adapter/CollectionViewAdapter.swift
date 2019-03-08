@@ -14,16 +14,11 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
     
     // MARK: - Properties
     
-    private let collectionView: UICollectionView
+    fileprivate let collectionView: UICollectionView
+    private var dataSource: [CollectionViewDataSourceItem] = []
     private let _onRowSelected: PublishRelay<Int> = PublishRelay()
+    private var _cellsRegistered: Bool = false
     private(set) lazy var onRowSelected: Signal<Int> = self._onRowSelected.asSignal()
-    
-    fileprivate var dataSource: [CollectionViewDataSourceItem] = [] {
-        didSet {
-            dataSource.registerCells(on: collectionView)
-            collectionView.reloadData()
-        }
-    }
     
     // MARK: - Initializer
     
@@ -38,6 +33,14 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
     private func setup() {
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+    
+    fileprivate func reload(with dataSource: [CollectionViewDataSourceItem]) {
+        dataSource.registerCells(on: collectionView)
+        collectionView.performBatchUpdates({
+            self.dataSource = dataSource
+            collectionView.reloadSections([0])
+        }, completion: nil)
     }
     
     // MARK: - UICollectionViewDataSource protocol methods
@@ -81,9 +84,7 @@ extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.Dr
     
     func drive(_ collectionViewAdapter: CollectionViewAdapter) -> Disposable {
         return drive(onNext: { [weak collectionViewAdapter] (dataSource) in
-            collectionViewAdapter?.dataSource = dataSource
+            collectionViewAdapter?.reload(with: dataSource)
         })
     }
 }
-
-

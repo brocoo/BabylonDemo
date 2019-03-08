@@ -74,14 +74,8 @@ final class PostDetailViewController: UIViewController {
             .drive(refreshingOf: refreshControl)
             .disposed(by: disposeBag)
         
-        let width = collectionView.rx
-            .bounds
-            .map { $0.size.width }
-            .distinctUntilChanged()
-            .asDriver(onErrorDriveWith: Driver.empty())
-        
         Driver
-            .combineLatest(Driver.just(viewModel.authoredPost), viewModel.comments, width)
+            .combineLatest(Driver.just(viewModel.authoredPost), viewModel.comments, collectionView.rx.width)
             .map { PostDetailDataSource(post: $0.0, comments: $0.1, forWidth: $0.2).asDataSource() }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)
