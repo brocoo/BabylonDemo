@@ -16,24 +16,5 @@ public protocol RequestProtocol {
     var method: RequestMethod { get }
     var body: RequestBody? { get }
     var headers: [String: String] { get }
-    var parameters: [URLParameter] { get }
-}
-
-// MARK: -
-
-extension RequestProtocol {
-    
-    // MARK: - Default properties
-    
-    var body: RequestBody? {
-        return nil
-    }
-    
-    var headers: [String: String] {
-        return [:]
-    }
-    
-    var parameters: [URLParameter] {
-        return []
-    }
+    var parameters: [String: String] { get }
 }

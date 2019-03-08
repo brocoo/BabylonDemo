@@ -27,7 +27,7 @@ extension Endpoint: RequestProtocol {
         switch self {
         case .posts: return "/posts"
         case .users: return "/users"
-        case .comments: return "/comments"
+        case .comments(let postId): return "/posts/\(postId)/comments"
         }
     }
 
@@ -38,19 +38,10 @@ extension Endpoint: RequestProtocol {
         case .comments: return .get
         }
     }
-
-    var body: RequestBody? {
-        return nil
-    }
-
-    var headers: [String: String] {
-        return [:]
-    }
-
-    var parameters: [URLParameter] {
-        switch self {
-        case .comments(let postId): return [URLParameter(key: "postId", value: "\(postId)")]
-        default: return []
-        }
-    }
+    
+    var body: RequestBody? { return nil }
+    
+    var headers: [String: String] { return [:] }
+    
+    var parameters: [String: String] { return [:] }
 }

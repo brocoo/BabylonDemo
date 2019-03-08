@@ -13,7 +13,7 @@ final class NetworkMonitor {
     
     // MARK: -
     
-    let pathMonitor: NWPathMonitor
+    private let pathMonitor: NWPathMonitor
     private(set) var isConnected: Bool = true
     
     // MARK: - Initializer

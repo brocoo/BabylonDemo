@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NavigationServiceProtocol: class {
+protocol NavigationRouterProtocol: class {
     
     func navigate(to appPath: AppPath)
 }
@@ -34,16 +34,16 @@ final class NavigationRouter: NSObject {
     
     fileprivate func makePostsViewController() -> UIViewController {
         let viewModel = PostsViewModel(dataProvider: dataService)
-        return PostsViewController(viewModel: viewModel, navigationService: self)
+        return PostsViewController(viewModel: viewModel, navigationRouter: self)
     }
     
     fileprivate func makePostDetailsViewController(from authoredPost: AuthoredPost) -> UIViewController {
         let viewModel = PostDetailViewModel(dataService: dataService, authoredPost: authoredPost)
-        return PostDetailViewController(viewModel: viewModel, navigationService: self)
+        return PostDetailViewController(viewModel: viewModel, navigationRouter: self)
     }
 }
 
-extension NavigationRouter: NavigationServiceProtocol {
+extension NavigationRouter: NavigationRouterProtocol {
     
     // MARK: -
     

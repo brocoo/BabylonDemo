@@ -48,7 +48,7 @@ public enum Result<T> {
         }
     }
     
-    public var isFailure: Bool { return !self.isSuccessful }
+    public var isFailed: Bool { return !isSuccessful }
 }
 
 // MARK: -
@@ -107,27 +107,10 @@ extension Result: CustomStringConvertible {
         case .success(let value):
             guard let descriptable = value as? CustomStringConvertible else { return "\(value)" }
             return descriptable.description
-        case .failure(_): return "Error"
+        case .failure(let error): return error.localizedDescription
         }
     }
 }
-
-// MARK: -
-
-//extension Result {
-//
-//    // MARK: - Reactive
-//
-//    public func onObserver(_ observer: AnyObserver<T>) {
-//        switch self {
-//        case .success(let value):
-//            observer.onNext(value)
-//            observer.onCompleted()
-//        case .failure(let error):
-//            observer.onError(error)
-//        }
-//    }
-//}
 
 // MARK: -
 
@@ -144,21 +127,3 @@ extension Result where T: Decodable {
         }
     }
 }
-
-// MARK: -
-
-//extension ObservableType {
-//
-//    // MARK: - Materialize as a result
-//
-//    public func asResult() -> RxSwift.Observable<Result<Self.E>> {
-//        return materialize()
-//            .map { (event) -> Result<Self.E>? in
-//                switch event {
-//                case .next(let element): return Result<Self.E>.success(element)
-//                case .error(let error): return Result<Self.E>.failure(error)
-//                case .completed: return nil
-//                }
-//            }.flatMap { Observable.from(optional: $0) }
-//    }
-//}

@@ -84,7 +84,10 @@ public final class Service {
         components.host = configuration.urlHost
         components.scheme = configuration.urlScheme
         components.path = request.path
-        components.queryItems = (configuration.defaultURLParameters + request.parameters).map { URLQueryItem(name: $0.key, value: $0.value) }
+        components.queryItems = configuration
+            .defaultURLParameters
+            .merging(request.parameters, uniquingKeysWith: { $1 })
+            .map { URLQueryItem(name: $0.key, value: $0.value) }
         return components
     }
 }

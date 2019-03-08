@@ -22,8 +22,9 @@ final class PostDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: PostDetailViewModelProtocol
+    private let refreshControl = UIRefreshControl(frame: .zero)
     private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
-    unowned let navigationService: NavigationServiceProtocol
+    unowned let navigationRouter: NavigationRouterProtocol
     private let disposeBag = DisposeBag()
 
     // MARK: - IBOutlet properties
@@ -32,9 +33,9 @@ final class PostDetailViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(viewModel: PostDetailViewModelProtocol, navigationService: NavigationServiceProtocol) {
+    init(viewModel: PostDetailViewModelProtocol, navigationRouter: NavigationRouterProtocol) {
         self.viewModel = viewModel
-        self.navigationService = navigationService
+        self.navigationRouter = navigationRouter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,7 +56,7 @@ final class PostDetailViewController: UIViewController {
     
     private func setupUI() {
         title = viewModel.authoredPost.post.title
-        collectionView.refreshControl = UIRefreshControl(frame: .zero)
+        collectionView.refreshControl = refreshControl
         collectionView.backgroundColor = UIColor.groupTableViewBackground
     }
     
@@ -69,9 +70,9 @@ final class PostDetailViewController: UIViewController {
         
         viewModel
             .comments
-            .drive(onNext: { [weak self] (posts) in
-                self?.collectionView.refreshControl?.endRefreshing()
-            }).disposed(by: disposeBag)
+            .map { _ in false }
+            .drive(refreshingOf: refreshControl)
+            .disposed(by: disposeBag)
         
         let width = collectionView.rx
             .bounds

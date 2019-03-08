@@ -21,7 +21,7 @@ final class PostsViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: PostsViewModelProtocol
-    unowned let navigationService: NavigationServiceProtocol
+    unowned let navigationRouter: NavigationRouterProtocol
     private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
     private let disposeBag = DisposeBag()
     
@@ -31,9 +31,9 @@ final class PostsViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(viewModel: PostsViewModelProtocol, navigationService: NavigationServiceProtocol) {
+    init(viewModel: PostsViewModelProtocol, navigationRouter: NavigationRouterProtocol) {
         self.viewModel = viewModel
-        self.navigationService = navigationService
+        self.navigationRouter = navigationRouter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -94,7 +94,7 @@ final class PostsViewController: UIViewController {
             .withLatestFrom(authoredPosts) { (index, authoredPosts) -> AuthoredPost in
                 return authoredPosts[index]
             }.drive(onNext: { [weak self] (authoredPost) in
-                self?.navigationService.navigate(to: .postDetail(authoredPost))
+                self?.navigationRouter.navigate(to: .postDetail(authoredPost))
             }).disposed(by: disposeBag)
     }
 }

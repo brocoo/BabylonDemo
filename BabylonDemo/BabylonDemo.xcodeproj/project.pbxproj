@@ -23,6 +23,7 @@
 		201D4E84222D3DDD0083BFD2 /* PostDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201D4E82222D3DDD0083BFD2 /* PostDetailCollectionViewCell.xib */; };
 		201E0D3A222ED3A0008B971C /* CommentsCountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E0D38222ED3A0008B971C /* CommentsCountCollectionViewCell.swift */; };
 		201E0D3B222ED3A0008B971C /* CommentsCountCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201E0D39222ED3A0008B971C /* CommentsCountCollectionViewCell.xib */; };
+		201E5DA72232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E5DA62232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift */; };
 		2020A861222DC69600165DDF /* PostDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2020A860222DC69600165DDF /* PostDetailDataSource.swift */; };
 		2020A865222DE2AB00165DDF /* CollectionViewDataSourceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2020A864222DE2AB00165DDF /* CollectionViewDataSourceItem.swift */; };
 		20215AA3222AFF20002A1130 /* NetworkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20215A9A222AFF1F002A1130 /* NetworkKit.framework */; };
@@ -46,8 +47,6 @@
 		20215AD0222AFFCB002A1130 /* RequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215ABF222AFFCB002A1130 /* RequestBody.swift */; };
 		20215AD3222AFFCB002A1130 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC1222AFFCB002A1130 /* ServiceConfiguration.swift */; };
 		20215AD4222AFFCB002A1130 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC1222AFFCB002A1130 /* ServiceConfiguration.swift */; };
-		20215AD5222AFFCB002A1130 /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC2222AFFCB002A1130 /* URLParameter.swift */; };
-		20215AD6222AFFCB002A1130 /* URLParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC2222AFFCB002A1130 /* URLParameter.swift */; };
 		20215AD9222B0221002A1130 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC0222AFFCB002A1130 /* Endpoint.swift */; };
 		20215ADA222B0223002A1130 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215AC0222AFFCB002A1130 /* Endpoint.swift */; };
 		20215ADC222B066A002A1130 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20215ADB222B066A002A1130 /* APIService.swift */; };
@@ -82,7 +81,6 @@
 		20852FA6222AF7F400C0E054 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; };
 		20852FA7222AF7F400C0E054 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; };
 		20852FA8222AF7FC00C0E054 /* RxAtomic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		20DA09FE2232B818006AAD28 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C488B52230836900037FFA /* Cache.swift */; };
 		20FEA7E3222D647B004FA966 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E2222D647B004FA966 /* CellView.swift */; };
 		20FEA7E8222D786D004FA966 /* CollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */; };
 		20FEA7EC222D8F44004FA966 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */; };
@@ -157,6 +155,7 @@
 		201D4E82222D3DDD0083BFD2 /* PostDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailCollectionViewCell.xib; sourceTree = "<group>"; };
 		201E0D38222ED3A0008B971C /* CommentsCountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCountCollectionViewCell.swift; sourceTree = "<group>"; };
 		201E0D39222ED3A0008B971C /* CommentsCountCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsCountCollectionViewCell.xib; sourceTree = "<group>"; };
+		201E5DA62232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Reactive.swift"; sourceTree = "<group>"; };
 		2020A860222DC69600165DDF /* PostDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailDataSource.swift; sourceTree = "<group>"; };
 		2020A864222DE2AB00165DDF /* CollectionViewDataSourceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourceItem.swift; sourceTree = "<group>"; };
 		20215A9A222AFF1F002A1130 /* NetworkKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,7 +173,6 @@
 		20215ABF222AFFCB002A1130 /* RequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBody.swift; sourceTree = "<group>"; };
 		20215AC0222AFFCB002A1130 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		20215AC1222AFFCB002A1130 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
-		20215AC2222AFFCB002A1130 /* URLParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameter.swift; sourceTree = "<group>"; };
 		20215ADB222B066A002A1130 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		20215AE0222B08F7002A1130 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		20215AE8222C4155002A1130 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 		20852F8E222AF50E00C0E054 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxTest.framework; sourceTree = "<group>"; };
 		20852F8F222AF50E00C0E054 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = "<group>"; };
 		20852FA5222AF7F400C0E054 /* RxAtomic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RxAtomic.framework; sourceTree = "<group>"; };
-		20C488B52230836900037FFA /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		20FEA7E2222D647B004FA966 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewAdapter.swift; sourceTree = "<group>"; };
 		20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
@@ -344,9 +341,7 @@
 				20215ABA222AFFCA002A1130 /* Result.swift */,
 				20215ABC222AFFCA002A1130 /* Service.swift */,
 				20215AC1222AFFCB002A1130 /* ServiceConfiguration.swift */,
-				20215AC2222AFFCB002A1130 /* URLParameter.swift */,
 				20215AE8222C4155002A1130 /* NetworkMonitor.swift */,
-				20C488B52230836900037FFA /* Cache.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -392,6 +387,7 @@
 				20FEA7E2222D647B004FA966 /* CellView.swift */,
 				20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */,
 				20FEA7F1222DA1A4004FA966 /* SizeConfigurableView.swift */,
+				201E5DA62232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -717,10 +713,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				20215ACF222AFFCB002A1130 /* RequestBody.swift in Sources */,
-				20215AD5222AFFCB002A1130 /* URLParameter.swift in Sources */,
 				20215AC5222AFFCB002A1130 /* Result.swift in Sources */,
 				20215AC9222AFFCB002A1130 /* Service.swift in Sources */,
-				20DA09FE2232B818006AAD28 /* Cache.swift in Sources */,
 				20215ACD222AFFCB002A1130 /* DecodableResponse.swift in Sources */,
 				20215AD3222AFFCB002A1130 /* ServiceConfiguration.swift in Sources */,
 				20215AC7222AFFCB002A1130 /* RequestMethod.swift in Sources */,
@@ -734,7 +728,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20215AD6222AFFCB002A1130 /* URLParameter.swift in Sources */,
 				20215AC8222AFFCB002A1130 /* RequestMethod.swift in Sources */,
 				20215AC6222AFFCB002A1130 /* Result.swift in Sources */,
 				20215ACA222AFFCB002A1130 /* Service.swift in Sources */,
@@ -753,6 +746,7 @@
 			files = (
 				2020A861222DC69600165DDF /* PostDetailDataSource.swift in Sources */,
 				201D4E7E222D3B0C0083BFD2 /* CommentCollectionViewCell.swift in Sources */,
+				201E5DA72232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift in Sources */,
 				201D4E64222C6B470083BFD2 /* Address.swift in Sources */,
 				201D4E6F222D05090083BFD2 /* PostDetailViewController.swift in Sources */,
 				20215AD9222B0221002A1130 /* Endpoint.swift in Sources */,
