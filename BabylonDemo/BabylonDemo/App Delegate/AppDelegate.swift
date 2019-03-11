@@ -14,8 +14,7 @@ class AppDelegate: UIResponder {
     // MARK: - Properties
     
     fileprivate let dataService: DataService
-    fileprivate let navigationRouter: NavigationRouter
-    let configurators: [ApplicationConfiguratorProtocol]
+    fileprivate let navigationRouter: NavigationCoordinator
     var window: UIWindow?
     
     // MARK: - Initializer
@@ -23,8 +22,7 @@ class AppDelegate: UIResponder {
     override init() {
         let dataService = DataService()
         self.dataService = dataService
-        self.navigationRouter = NavigationRouter(dataService: dataService)
-        configurators = []
+        self.navigationRouter = NavigationCoordinator(dataService: dataService)
         super.init()
     }
     
@@ -35,10 +33,6 @@ class AppDelegate: UIResponder {
         window?.makeKeyAndVisible()
         window?.rootViewController = navigationRouter.navigationController
     }
-    
-    fileprivate func configure(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        configurators.forEach { $0.configure(application, launchOptions: launchOptions) }
-    }
 }
 
 // MARK: -
@@ -48,7 +42,6 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: - UIApplicationDelegate methods
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        configure(application, launchOptions: launchOptions)
         setupWindow()
         return true
     }

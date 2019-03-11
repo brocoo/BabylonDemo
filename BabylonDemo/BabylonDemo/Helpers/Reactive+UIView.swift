@@ -12,7 +12,7 @@ import RxCocoa
 
 extension Reactive where Base: UIView {
     
-    // MARK: - UIScrollView reactive extension
+    // MARK: - UIView reactive extension
     
     public var width: Driver<CGFloat> {
         return observe(CGRect.self, "bounds")

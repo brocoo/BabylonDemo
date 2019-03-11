@@ -36,20 +36,9 @@ final class DataService: NSObject {
 
 // MARK: -
 
-extension DataService: ApplicationConfiguratorProtocol {
+extension DataService: PostsDataServiceProtocol {
     
-    // MARK: -
-    
-    func configure(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
-        
-    }
-}
-
-// MARK: -
-
-extension DataService: PostsDataProviderProtocol {
-    
-    // MARK: - PostsDataProviderProtocol
+    // MARK: - PostsDataServiceProtocol
     
     func fetchAuthoredPosts() -> Single<[AuthoredPost]> {
         return Single

@@ -9,11 +9,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NetworkKit
 
 protocol PostDetailViewModelProtocol {
     
     var authoredPost: AuthoredPost { get }
     var comments: Driver<[Comment]> { get }
+    var error: Signal<Error> { get }
     var reloadTrigger: PublishRelay<Void> { get }
 }
 
@@ -24,7 +26,7 @@ final class PostDetailViewController: UIViewController {
     private let viewModel: PostDetailViewModelProtocol
     private let refreshControl = UIRefreshControl(frame: .zero)
     private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
-    unowned let navigationRouter: NavigationRouterProtocol
+    unowned let navigationCoordinator: NavigationCoordinatorProtocol
     private let disposeBag = DisposeBag()
 
     // MARK: - IBOutlet properties
@@ -33,9 +35,9 @@ final class PostDetailViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(viewModel: PostDetailViewModelProtocol, navigationRouter: NavigationRouterProtocol) {
+    init(viewModel: PostDetailViewModelProtocol, navigationCoordinator: NavigationCoordinatorProtocol) {
         self.viewModel = viewModel
-        self.navigationRouter = navigationRouter
+        self.navigationCoordinator = navigationCoordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -55,7 +57,7 @@ final class PostDetailViewController: UIViewController {
     // MARK: - Setup
     
     private func setupUI() {
-        title = viewModel.authoredPost.post.title
+        title = "POST_DETAIL_VIEW_CONTROLLER_TITLE".localized
         collectionView.refreshControl = refreshControl
         collectionView.backgroundColor = UIColor.groupTableViewBackground
     }
@@ -71,7 +73,8 @@ final class PostDetailViewController: UIViewController {
         viewModel
             .comments
             .map { _ in false }
-            .drive(refreshingOf: refreshControl)
+            .asObservable()
+            .bind(to: refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
         
         Driver
@@ -79,5 +82,13 @@ final class PostDetailViewController: UIViewController {
             .map { PostDetailDataSource(post: $0.0, comments: $0.1, forWidth: $0.2).asDataSource() }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)
+        
+        viewModel
+            .error
+            .emit(onNext: { [weak self] (error) in
+                self?.presentAlert(for: error, retry: {
+                    self?.viewModel.reloadTrigger.accept(())
+                })
+            }).disposed(by: disposeBag)
     }
 }

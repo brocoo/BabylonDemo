@@ -94,7 +94,7 @@ public final class Service {
 
 // MARK: - Service error
 
-enum ServiceError: Error {
+public enum ServiceError: Error {
     
     case noNetwork
     case unknown(request: RequestProtocol, response: URLResponse?)

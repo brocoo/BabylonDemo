@@ -24,3 +24,16 @@ extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.Dr
         })
     }
 }
+
+extension Reactive where Base: UIRefreshControl {
+    
+    public var isRefreshing: Binder<Bool> {
+        return Binder(base) { refreshControl, refresh in
+            if refresh {
+                refreshControl.beginRefreshing()
+            } else {
+                refreshControl.endRefreshing()
+            }
+        }
+    }
+}

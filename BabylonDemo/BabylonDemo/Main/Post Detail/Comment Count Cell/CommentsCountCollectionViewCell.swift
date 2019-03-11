@@ -64,6 +64,6 @@ extension Int {
     // MARK: -
     
     fileprivate var asCommentCountText: String {
-        return "\(self) \(self > 1 ? "comments" : "comment")"
+        return "\(self) \(self > 1 ? "COMMENT_COUNT_CELL_COPY_PREFIX_PLURAL".localized : "COMMENT_COUNT_CELL_COPY_PREFIX_SINGULAR".localized)"
     }
 }

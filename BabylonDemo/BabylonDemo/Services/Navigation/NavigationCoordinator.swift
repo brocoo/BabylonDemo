@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol NavigationRouterProtocol: class {
+protocol NavigationCoordinatorProtocol: class {
     
     func navigate(to appPath: AppPath)
 }
 
-final class NavigationRouter: NSObject {
+final class NavigationCoordinator: NSObject {
     
     // MARK: - Properties
     
@@ -30,20 +30,20 @@ final class NavigationRouter: NSObject {
         super.init()
     }
     
-    // MARK: -
+    // MARK: - Fileprivate helper
     
     fileprivate func makePostsViewController() -> UIViewController {
         let viewModel = PostsViewModel(dataProvider: dataService)
-        return PostsViewController(viewModel: viewModel, navigationRouter: self)
+        return PostsViewController(viewModel: viewModel, navigationCoordinator: self)
     }
     
     fileprivate func makePostDetailsViewController(from authoredPost: AuthoredPost) -> UIViewController {
         let viewModel = PostDetailViewModel(dataService: dataService, authoredPost: authoredPost)
-        return PostDetailViewController(viewModel: viewModel, navigationRouter: self)
+        return PostDetailViewController(viewModel: viewModel, navigationCoordinator: self)
     }
 }
 
-extension NavigationRouter: NavigationRouterProtocol {
+extension NavigationCoordinator: NavigationCoordinatorProtocol {
     
     // MARK: -
     

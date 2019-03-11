@@ -13,6 +13,7 @@ import RxCocoa
 protocol PostsViewModelProtocol {
     
     var authoredPosts: Driver<[AuthoredPost]> { get }
+    var error: Signal<Error> { get }
     var reloadTrigger: PublishRelay<Void> { get }
 }
 
@@ -21,7 +22,8 @@ final class PostsViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: PostsViewModelProtocol
-    unowned let navigationRouter: NavigationRouterProtocol
+    private let refreshControl = UIRefreshControl(frame: .zero)
+    unowned let navigationCoordinator: NavigationCoordinatorProtocol
     private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
     private let disposeBag = DisposeBag()
     
@@ -31,9 +33,9 @@ final class PostsViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(viewModel: PostsViewModelProtocol, navigationRouter: NavigationRouterProtocol) {
+    init(viewModel: PostsViewModelProtocol, navigationCoordinator: NavigationCoordinatorProtocol) {
         self.viewModel = viewModel
-        self.navigationRouter = navigationRouter
+        self.navigationCoordinator = navigationCoordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,8 +55,8 @@ final class PostsViewController: UIViewController {
     // MARK: - Setup
     
     private func setupUI() {
-        title = "Posts"
-        collectionView.refreshControl = UIRefreshControl(frame: .zero)
+        title = "POSTS_VIEW_CONTROLLER_TITLE".localized
+        collectionView.refreshControl = refreshControl
         collectionView.backgroundColor = UIColor.groupTableViewBackground
     }
     
@@ -68,16 +70,13 @@ final class PostsViewController: UIViewController {
         
         viewModel
             .authoredPosts
-            .drive(onNext: { [weak self] (posts) in
-                self?.collectionView.refreshControl?.endRefreshing()
-            }).disposed(by: disposeBag)
-        
-        let authoredPosts = viewModel
-            .authoredPosts
-            .distinctUntilChanged()
+            .map { _ in false }
+            .asObservable()
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
         
         Driver
-            .combineLatest(authoredPosts, collectionView.rx.width)
+            .combineLatest(viewModel.authoredPosts.distinctUntilChanged(), collectionView.rx.width)
             .map { $0.0.asDataSource(collectionViewWidth: $0.1) }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)
@@ -85,10 +84,18 @@ final class PostsViewController: UIViewController {
         collectionViewAdapter
             .onRowSelected
             .asDriver(onErrorDriveWith: Driver.empty())
-            .withLatestFrom(authoredPosts) { (index, authoredPosts) -> AuthoredPost in
+            .withLatestFrom(viewModel.authoredPosts.distinctUntilChanged()) { (index, authoredPosts) -> AuthoredPost in
                 return authoredPosts[index]
             }.drive(onNext: { [weak self] (authoredPost) in
-                self?.navigationRouter.navigate(to: .postDetail(authoredPost))
+                self?.navigationCoordinator.navigate(to: .postDetail(authoredPost))
+            }).disposed(by: disposeBag)
+        
+        viewModel
+            .error
+            .emit(onNext: { [weak self] (error) in
+                self?.presentAlert(for: error, retry: {
+                    self?.viewModel.reloadTrigger.accept(())
+                })
             }).disposed(by: disposeBag)
     }
 }

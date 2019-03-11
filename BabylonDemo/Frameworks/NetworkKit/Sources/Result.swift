@@ -57,14 +57,14 @@ extension Result {
     
     // MARK: - Map
     
-    func map<U>(_ f: (T) -> U) -> Result<U> {
+    public func map<U>(_ f: (T) -> U) -> Result<U> {
         switch self {
         case .success(let value): return Result<U>.success(f(value))
         case .failure(let error): return Result<U>.failure(error)
         }
     }
     
-    func map<U>(_ f: (T) throws -> U) -> Result<U> {
+    public func map<U>(_ f: (T) throws -> U) -> Result<U> {
         switch self {
         case .success(let value):
             do {
@@ -84,14 +84,14 @@ extension Result {
     
     // MARK: - Flatten & flatMap
     
-    static func flatten<T>(_ result: Result<Result<T>>) -> Result<T> {
+    public static func flatten<T>(_ result: Result<Result<T>>) -> Result<T> {
         switch result {
         case .success(let innerResult): return innerResult
         case .failure(let error): return Result<T>.failure(error)
         }
     }
     
-    func flatMap<U>(_ f: (T) -> Result<U>) -> Result<U> {
+    public func flatMap<U>(_ f: (T) -> Result<U>) -> Result<U> {
         return Result.flatten(self.map(f))
     }
 }
@@ -118,7 +118,7 @@ extension Result where T: Decodable {
     
     // MARK: - Initializer for decodable
     
-    init(jsonEncoded data: Data) {
+    public init(jsonEncoded data: Data) {
         do {
             let value = try JSONDecoder().decode(T.self, from: data)
             self = .success(value)
