@@ -18,8 +18,8 @@ final class DataService: NSObject {
     
     // MARK: - Initializer
     
-    override init() {
-        self.apiService = APIService()
+    init(apiService: APIService) {
+        self.apiService = apiService
         super.init()
     }
     

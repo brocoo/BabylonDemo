@@ -14,15 +14,12 @@ class AppDelegate: UIResponder {
     // MARK: - Properties
     
     fileprivate let dataService: DataService
-    fileprivate let navigationRouter: NavigationCoordinator
     var window: UIWindow?
     
     // MARK: - Initializer
     
     override init() {
-        let dataService = DataService()
-        self.dataService = dataService
-        self.navigationRouter = NavigationCoordinator(dataService: dataService)
+        self.dataService = DataService(apiService: APIService())
         super.init()
     }
     
@@ -31,7 +28,7 @@ class AppDelegate: UIResponder {
     fileprivate func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = navigationRouter.navigationController
+        window?.rootViewController = NavigationCoordinator(dataService: dataService).navigationController
     }
 }
 
