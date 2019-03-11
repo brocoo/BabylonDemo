@@ -33,24 +33,30 @@ final class PostsViewModelTests: XCTestCase {
     
     // MARK: - Tests
 
-    func testItEmitsAuthoredPosts() {
-        
-        let authoredPosts = scheduler.createObserver(Int.self)
-        dataService.posts = [
-            AuthoredPost.makeMockData(count: 10),
-            AuthoredPost.makeMockData(count: 10),
-            AuthoredPost.makeMockData(count: 10),
-            AuthoredPost.makeMockData(count: 7),
-            AuthoredPost.makeMockData(count: 10),
-            AuthoredPost.makeMockData(count: 3),
-            AuthoredPost.makeMockData(count: 10),
+    func testItEmitsAuthoredPostsAndErrors() {
+        dataService.postsEvents = [
+            Event.next(AuthoredPost.makeMockData(count: 10)),
+            Event.next(AuthoredPost.makeMockData(count: 10)),
+            Event.error(MockError()),
+            Event.error(MockError()),
+            Event.next(AuthoredPost.makeMockData(count: 10)),
+            Event.next(AuthoredPost.makeMockData(count: 3)),
+            Event.next(AuthoredPost.makeMockData(count: 10))
         ]
         
+        let authoredPostsCount = scheduler.createObserver(Int.self)
+        let error = scheduler.createObserver(Error.self)
         let viewModel = PostsViewModel(dataProvider: dataService)
+        
         viewModel
             .authoredPosts
             .map { $0.count }
-            .drive(authoredPosts)
+            .drive(authoredPostsCount)
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .error
+            .emit(to: error)
             .disposed(by: disposeBag)
         
         scheduler
@@ -65,18 +71,24 @@ final class PostsViewModelTests: XCTestCase {
             ]).bind(to: viewModel.reloadTrigger)
             .disposed(by: disposeBag)
         
-        let expectedEvents = Recorded.events(
+        let expectedAuthoredPostsCountEvents = Recorded.events(
             .next(0, 0),
             .next(1, 10),
             .next(2, 10),
-            .next(3, 10),
-            .next(4, 7),
+            .next(3, 0),
+            .next(4, 0),
             .next(5, 10),
             .next(6, 3),
             .next(7, 10)
         )
         
+        let expectedErrorEvents = Recorded.events(
+            .next(3, MockError()),
+            .next(4, MockError())
+        )
+        
         scheduler.start()
-        XCTAssert(authoredPosts.events == expectedEvents)
+        XCTAssert(authoredPostsCount.events == expectedAuthoredPostsCountEvents)
+        XCTAssert(error.events.map { $0.time } == expectedErrorEvents.map { $0.time })
     }
 }

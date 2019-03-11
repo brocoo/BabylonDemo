@@ -19,10 +19,8 @@ final class DecodableResponseTests: XCTestCase {
         let data = Result(jsonData(forRessource: "GETPosts"))
         let response: DecodableResponse<[Post]> = DecodableResponse(request: request, data: data)
         switch response.decodedData {
-        case .success(let posts):
-            XCTAssert(posts.count == 5)
-        case .failure:
-            XCTFail()
+        case .success(let posts): XCTAssert(posts.count == 5)
+        case .failure: XCTFail()
         }
     }
     
@@ -31,10 +29,8 @@ final class DecodableResponseTests: XCTestCase {
         let data = Result(jsonData(forRessource: "GETPosts_malformed"))
         let response: DecodableResponse<[Post]> = DecodableResponse(request: request, data: data)
         switch response.decodedData {
-        case .success:
-            XCTFail()
-        case .failure(let error):
-            XCTAssert(error is Swift.DecodingError)
+        case .success: XCTFail()
+        case .failure(let error): XCTAssert(error is Swift.DecodingError)
         }
     }
 }

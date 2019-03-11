@@ -73,6 +73,10 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
         return 1.0
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         _onRowSelected.accept(indexPath.row)
     }

@@ -88,6 +88,7 @@
 		20D97D53223689A100337F77 /* Comment+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D52223689A100337F77 /* Comment+MockData.swift */; };
 		20D97D5522368B9500337F77 /* PostsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5422368B9500337F77 /* PostsViewControllerTests.swift */; };
 		20D97D5722368C6900337F77 /* Error+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5622368C6900337F77 /* Error+Message.swift */; };
+		20D97D592236B1F100337F77 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D582236B1F100337F77 /* Event.swift */; };
 		20FEA7E3222D647B004FA966 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E2222D647B004FA966 /* CellView.swift */; };
 		20FEA7E8222D786D004FA966 /* CollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */; };
 		20FEA7EC222D8F44004FA966 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */; };
@@ -217,6 +218,7 @@
 		20D97D52223689A100337F77 /* Comment+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+MockData.swift"; sourceTree = "<group>"; };
 		20D97D5422368B9500337F77 /* PostsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerTests.swift; sourceTree = "<group>"; };
 		20D97D5622368C6900337F77 /* Error+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Message.swift"; sourceTree = "<group>"; };
+		20D97D582236B1F100337F77 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		20FEA7E2222D647B004FA966 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewAdapter.swift; sourceTree = "<group>"; };
 		20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				20D97D302235984E00337F77 /* XCTestCase+JSONData.swift */,
 				20D97D3A2235AC0100337F77 /* AuthoredPost+MockData.swift */,
 				20D97D52223689A100337F77 /* Comment+MockData.swift */,
+				20D97D582236B1F100337F77 /* Event.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				20215ADA222B0223002A1130 /* Endpoint.swift in Sources */,
 				20D97D3B2235AC0100337F77 /* AuthoredPost+MockData.swift in Sources */,
 				20D97D392235A91100337F77 /* MockDataService.swift in Sources */,
+				20D97D592236B1F100337F77 /* Event.swift in Sources */,
 				20D97D51223684DC00337F77 /* PostDetailViewModelTests.swift in Sources */,
 				20215ADE222B08BA002A1130 /* APIService.swift in Sources */,
 				2055D53B22358E3E00BFD444 /* DecodableResponseTests.swift in Sources */,
@@ -849,10 +853,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/Reachibility",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Frameworks/NetworkKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -883,10 +884,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks/Reachibility",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Frameworks/NetworkKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (

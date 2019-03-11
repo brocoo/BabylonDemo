@@ -14,9 +14,8 @@ import RxTest
 
 final class MockDataProvider {
     
-    var posts: [[AuthoredPost]] = []
-    var comments: [[Comment]] = []
-    var emitsError: Bool = false
+    var postsEvents: [Event<[AuthoredPost]>] = []
+    var commentsEvents: [Event<[Comment]>] = []
 }
 
 // MARK: -
@@ -26,11 +25,9 @@ extension MockDataProvider: PostsDataServiceProtocol {
     // MARK: - PostsDataServiceProtocol
     
     func fetchAuthoredPosts() -> Single<[AuthoredPost]> {
-        if emitsError {
-            return Single.error(MockError())
-        } else {
-            guard posts.count > 0 else { return Single.just([]) }
-            return Single.just(posts.remove(at: 0))
+        switch postsEvents.remove(at: 0) {
+        case .next(let posts): return Single.just(posts)
+        case .error(let error): return Single.error(error)
         }
     }
 }
@@ -42,11 +39,9 @@ extension MockDataProvider: PostDetailDataServiceProtocol {
     // MARK: - PostDetailDataServiceProtocol
     
     func fetchComments(forPostId postId: UInt) -> Single<[Comment]> {
-        if emitsError {
-            return Single.error(MockError())
-        } else {
-            guard comments.count > 0 else { return Single.just([]) }
-            return Single.just(comments.remove(at: 0))
+        switch commentsEvents.remove(at: 0) {
+        case .next(let comments): return Single.just(comments)
+        case .error(let error): return Single.error(error)
         }
     }
 }
