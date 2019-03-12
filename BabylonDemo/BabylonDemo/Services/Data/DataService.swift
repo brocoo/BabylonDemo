@@ -1,0 +1,63 @@
+//
+//  DataService.swift
+//  BabylonHealthDemo
+//
+//  Created by Julien Ducret on 3/2/19.
+//  Copyright © 2019 Julien Ducret. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+
+final class DataService: NSObject {
+    
+    // MARK: - Properties
+    
+    private let apiService: APIService
+    
+    // MARK: - Initializer
+    
+    init(apiService: APIService) {
+        self.apiService = apiService
+        super.init()
+    }
+    
+    // MARK: - Private helpers
+    
+    private func fetchPosts() -> Single<[Post]> {
+        return apiService.performCall(to: .posts)
+    }
+    
+    private func fetchUsers() -> Single<[User]> {
+        return apiService.performCall(to: .users)
+    }
+}
+
+// MARK: -
+
+extension DataService: PostsDataServiceProtocol {
+    
+    // MARK: - PostsDataServiceProtocol
+    
+    func fetchAuthoredPosts() -> Single<[AuthoredPost]> {
+        return Single
+            .zip(fetchPosts(), fetchUsers())
+            .map { (tuple) -> [AuthoredPost] in
+                let posts = tuple.0
+                let users = tuple.1
+                return posts.authored(by: users)
+            }
+    }
+}
+
+// MARK: -
+
+extension DataService: PostDetailDataServiceProtocol {
+    
+    // MARK: - PostDetailViewModelProtocol
+    
+    func fetchComments(forPostId postId: UInt) -> Single<[Comment]> {
+        return apiService.performCall(to: .comments(postId: postId))
+    }
+}

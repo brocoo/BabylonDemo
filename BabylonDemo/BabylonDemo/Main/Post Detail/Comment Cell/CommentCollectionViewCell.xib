@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CommentCollectionViewCell" customModule="BabylonDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye5-oA-dYh" userLabel="Label - Body">
+                        <rect key="frame" x="15" y="15" width="345" height="101.5"/>
+                        <string key="text">laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76r-iB-BGH" userLabel="Label - Email">
+                        <rect key="frame" x="15" y="131.5" width="345" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="76r-iB-BGH" firstAttribute="top" secondItem="ye5-oA-dYh" secondAttribute="bottom" constant="15" id="2u5-u7-AO1"/>
+                <constraint firstItem="ye5-oA-dYh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="fj2-xE-Mts"/>
+                <constraint firstItem="76r-iB-BGH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="hCA-Yl-ZU5"/>
+                <constraint firstAttribute="trailing" secondItem="76r-iB-BGH" secondAttribute="trailing" constant="15" id="nA1-bB-xo3"/>
+                <constraint firstItem="ye5-oA-dYh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="pvb-7J-CR2"/>
+                <constraint firstAttribute="trailing" secondItem="ye5-oA-dYh" secondAttribute="trailing" constant="15" id="z74-sF-4EG"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="375" height="173"/>
+            <connections>
+                <outlet property="bodyLabel" destination="ye5-oA-dYh" id="LOb-b8-qfw"/>
+                <outlet property="emailLabel" destination="76r-iB-BGH" id="z1T-sW-lK3"/>
+            </connections>
+            <point key="canvasLocation" x="-261.60000000000002" y="36.431784107946029"/>
+        </collectionViewCell>
+    </objects>
+</document>
