@@ -13,8 +13,8 @@ final class PostCollectionViewCell: CollectionViewCell {
     // MARK: - UIConstants
     
     fileprivate enum UIConstants {
-        static var titleFont: UIFont { return UIFont.preferredFont(forTextStyle: .body) }
-        static var authorFont: UIFont { return UIFont.preferredFont(forTextStyle: .footnote) }
+        static let titleFont = UIFont.preferredFont(forTextStyle: .headline)
+        static let authorFont = UIFont.preferredFont(forTextStyle: .footnote)
         static let verticalSpacing: CGFloat = 15.0
         static let horizontalSpacing: CGFloat = 15.0
     }
@@ -34,17 +34,12 @@ final class PostCollectionViewCell: CollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setup()
+        setupUI()
     }
     
     // MARK: - Setup
     
-    private func setup() {
+    private func setupUI() {
         backgroundColor = .white
         titleLabel.font = UIConstants.titleFont
         authorLabel.font = UIConstants.authorFont
@@ -57,7 +52,7 @@ extension PostCollectionViewCell: SizeConfigurableView {
     
     func configure(with model: AuthoredPost) {
         titleLabel.text = model.post.title
-        authorLabel.text = model.author.username
+        authorLabel.text = String(format: "BY_AUTHOR_USERNAME".localized, model.author.username)
     }
     
     // MARK: - HeightCacheableView protocol method
@@ -68,7 +63,7 @@ extension PostCollectionViewCell: SizeConfigurableView {
         height += UIConstants.verticalSpacing
         height += model.post.title.height(forWidth: contentWidth, font: UIConstants.titleFont)
         height += UIConstants.verticalSpacing
-        height += model.author.username.height(forWidth: contentWidth, font: UIConstants.authorFont)
+        height += String(format: "BY_AUTHOR_USERNAME".localized, model.author.username).height(forWidth: contentWidth, font: UIConstants.authorFont)
         height += UIConstants.verticalSpacing
         return height
     }

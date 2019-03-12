@@ -13,9 +13,9 @@ final class PostDetailCollectionViewCell: CollectionViewCell {
     // MARK: - UIConstants
     
     fileprivate enum UIConstants {
-        static var titleFont: UIFont { return UIFont.preferredFont(forTextStyle: .headline) }
-        static var bodyFont: UIFont { return UIFont.preferredFont(forTextStyle: .body) }
-        static var authorFont: UIFont { return UIFont.preferredFont(forTextStyle: .footnote) }
+        static let titleFont: UIFont = UIFont.preferredFont(forTextStyle: .headline)
+        static let bodyFont: UIFont = UIFont.preferredFont(forTextStyle: .body)
+        static let authorFont: UIFont = UIFont.preferredFont(forTextStyle: .footnote)
         static let spacing: CGFloat = 15.0
     }
     
@@ -29,17 +29,12 @@ final class PostDetailCollectionViewCell: CollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setup()
+        setupUI()
     }
     
     // MARK: - Setup
     
-    private func setup() {
+    private func setupUI() {
         backgroundColor = .white
         titleLabel.font = UIConstants.titleFont
         bodyLabel.font = UIConstants.bodyFont
@@ -56,7 +51,7 @@ extension PostDetailCollectionViewCell: SizeConfigurableView {
     func configure(with model: AuthoredPost) {
         titleLabel.text = model.post.title
         bodyLabel.text = model.post.body
-        authorLabel.text = model.author.username
+        authorLabel.text = String(format: "BY_AUTHOR_USERNAME".localized, model.author.username)
     }
     
     // MARK: - SizeConfigurableView protocol method
@@ -69,7 +64,7 @@ extension PostDetailCollectionViewCell: SizeConfigurableView {
         height += UIConstants.spacing
         height += model.post.body.height(forWidth: contentWidth, font: UIConstants.bodyFont)
         height += UIConstants.spacing
-        height += model.author.username.height(forWidth: contentWidth, font: UIConstants.authorFont)
+        height += String(format: "BY_AUTHOR_USERNAME".localized, model.author.username).height(forWidth: contentWidth, font: UIConstants.authorFont)
         height += UIConstants.spacing
         return height
     }

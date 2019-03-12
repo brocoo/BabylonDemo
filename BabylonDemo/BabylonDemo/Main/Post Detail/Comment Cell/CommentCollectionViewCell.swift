@@ -13,8 +13,8 @@ final class CommentCollectionViewCell: CollectionViewCell {
     // MARK: - UIConstants
     
     fileprivate enum UIConstants {
-        static var bodyFont: UIFont { return UIFont.preferredFont(forTextStyle: .body) }
-        static var emailFont: UIFont { return UIFont.preferredFont(forTextStyle: .subheadline) }
+        static let bodyFont = UIFont.preferredFont(forTextStyle: .body)
+        static let emailFont = UIFont.preferredFont(forTextStyle: .subheadline)
         static let verticalSpacing: CGFloat = 15.0
         static let horizontalSpacing: CGFloat = 15.0
     }
@@ -28,17 +28,12 @@ final class CommentCollectionViewCell: CollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setup()
+        setupUI()
     }
     
     // MARK: - Setup
     
-    private func setup() {
+    private func setupUI() {
         backgroundColor = .white
         bodyLabel.font = UIConstants.bodyFont
         emailLabel.font = UIConstants.emailFont

@@ -23,9 +23,9 @@ final class PostsViewController: UIViewController {
     
     private let viewModel: PostsViewModelProtocol
     private let refreshControl = UIRefreshControl(frame: .zero)
-    unowned let navigationCoordinator: NavigationCoordinatorProtocol
-    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
+    private let navigationCoordinator: NavigationCoordinatorProtocol
     private let disposeBag = DisposeBag()
+    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
     
     // MARK: - IBOutlet properties
     
@@ -75,18 +75,17 @@ final class PostsViewController: UIViewController {
             .bind(to: refreshControl.rx.isRefreshing)
             .disposed(by: disposeBag)
         
+        let selection = PublishRelay<AuthoredPost>()
+        
         Driver
             .combineLatest(viewModel.authoredPosts.distinctUntilChanged(), collectionView.rx.width)
-            .map { $0.0.asDataSource(collectionViewWidth: $0.1) }
+            .map { $0.0.asDataSource(collectionViewWidth: $0.1, emitSelectionOn: selection) }
             .drive(collectionViewAdapter)
             .disposed(by: disposeBag)
         
-        collectionViewAdapter
-            .onRowSelected
-            .asDriver(onErrorDriveWith: Driver.empty())
-            .withLatestFrom(viewModel.authoredPosts.distinctUntilChanged()) { (index, authoredPosts) -> AuthoredPost in
-                return authoredPosts[index]
-            }.drive(onNext: { [weak self] (authoredPost) in
+        selection
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { [weak self] (authoredPost) in
                 self?.navigationCoordinator.navigate(to: .postDetail(authoredPost))
             }).disposed(by: disposeBag)
         

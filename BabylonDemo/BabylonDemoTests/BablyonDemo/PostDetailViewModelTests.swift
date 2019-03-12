@@ -16,7 +16,7 @@ class PostDetailViewModelTests: XCTestCase {
     
     // MARK: - Properties
     
-    private var dataService: MockDataProvider!
+    private var dataService: MockDataService!
     private var scheduler: TestScheduler!
     private var disposeBag: DisposeBag!
 
@@ -24,7 +24,7 @@ class PostDetailViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.dataService = MockDataProvider()
+        self.dataService = MockDataService()
         self.scheduler = TestScheduler(initialClock: 0)
         self.disposeBag = DisposeBag()
     }
@@ -37,11 +37,11 @@ class PostDetailViewModelTests: XCTestCase {
 
         dataService.commentsEvents = [
             Event.error(MockError()),
-            Event.next(Comment.makeMockData(count: 10)),
-            Event.next(Comment.makeMockData(count: 20)),
+            Event.next(Comment.makeMocks(count: 10)),
+            Event.next(Comment.makeMocks(count: 20)),
             Event.error(MockError()),
-            Event.next(Comment.makeMockData(count: 7)),
-            Event.next(Comment.makeMockData(count: 15))
+            Event.next(Comment.makeMocks(count: 7)),
+            Event.next(Comment.makeMocks(count: 15))
         ]
         
         let commentsCount = scheduler.createObserver(Int.self)

@@ -39,7 +39,7 @@ final class APIService {
             .withCachePolicy(.useProtocolCachePolicy)
             .withTimeOutInterval(Constants.timeOutInterval)
         
-        return Service(session: session, configuration: serviceConfiguration, debug: true)
+        return Service(session: session, configuration: serviceConfiguration)
     }
     
     // MARK: -

@@ -10,15 +10,12 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class CollectionViewAdapter: NSObject {
     
     // MARK: - Properties
     
-    fileprivate let collectionView: UICollectionView
+    private let collectionView: UICollectionView
     private var dataSource: [CollectionViewDataSourceItem] = []
-    private let _onRowSelected: PublishRelay<Int> = PublishRelay()
-    private var _cellsRegistered: Bool = false
-    private(set) lazy var onRowSelected: Signal<Int> = self._onRowSelected.asSignal()
     
     // MARK: - Initializer
     
@@ -42,6 +39,11 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
             collectionView.reloadSections([0])
         }, completion: nil)
     }
+}
+
+// MARK: -
+
+extension CollectionViewAdapter: UICollectionViewDataSource {
     
     // MARK: - UICollectionViewDataSource protocol methods
     
@@ -56,14 +58,17 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return dataSource[indexPath.row].dequeueConfiguredCell(from: collectionView, at: indexPath)
     }
+}
+
+// MARK: -
+
+extension CollectionViewAdapter: UICollectionViewDelegateFlowLayout {
     
     // MARK: - UICollectionViewDelegateFlowLayout protocol methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return dataSource[indexPath.row].cachedSize
     }
-    
-    // MARK: - UICollectionViewDelegate protocol methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
@@ -77,10 +82,14 @@ final class CollectionViewAdapter: NSObject, UICollectionViewDataSource, UIColle
         return .zero
     }
     
+    // MARK: - UICollectionViewDelegate protocol methods
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        _onRowSelected.accept(indexPath.row)
+        dataSource[indexPath.row].didGetSelected()
     }
 }
+
+// MARK: -
 
 extension SharedSequenceConvertibleType where Self.SharingStrategy == RxCocoa.DriverSharingStrategy, E == [CollectionViewDataSourceItem] {
     

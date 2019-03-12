@@ -25,9 +25,9 @@ final class PostDetailViewController: UIViewController {
     
     private let viewModel: PostDetailViewModelProtocol
     private let refreshControl = UIRefreshControl(frame: .zero)
-    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
-    unowned let navigationCoordinator: NavigationCoordinatorProtocol
+    private let navigationCoordinator: NavigationCoordinatorProtocol
     private let disposeBag = DisposeBag()
+    private lazy var collectionViewAdapter: CollectionViewAdapter = CollectionViewAdapter(collectionView: collectionView)
 
     // MARK: - IBOutlet properties
     

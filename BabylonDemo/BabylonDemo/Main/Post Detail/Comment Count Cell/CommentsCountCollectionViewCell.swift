@@ -12,8 +12,8 @@ final class CommentsCountCollectionViewCell: CollectionViewCell {
     
     // MARK: - UIConstants
     
-    fileprivate enum UIConstants {
-        static var commentsFont: UIFont { return UIFont.preferredFont(forTextStyle: .caption2) }
+    private enum UIConstants {
+        static let commentsFont = UIFont.preferredFont(forTextStyle: .caption2)
         static let spacing: CGFloat = 15.0
     }
     
@@ -25,17 +25,12 @@ final class CommentsCountCollectionViewCell: CollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        setup()
+        setupUI()
     }
     
     // MARK: - Setup
     
-    private func setup() {
+    private func setupUI() {
         backgroundColor = .white
         commentsCountLabel.font = UIConstants.commentsFont
     }
@@ -64,6 +59,7 @@ extension Int {
     // MARK: -
     
     fileprivate var asCommentCountText: String {
-        return "\(self) \(self > 1 ? "COMMENT_COUNT_CELL_COPY_PREFIX_PLURAL".localized : "COMMENT_COUNT_CELL_COPY_PREFIX_SINGULAR".localized)"
+        let suffix = self > 1 ? "COMMENT_COUNT_CELL_COPY_PREFIX_PLURAL".localized : "COMMENT_COUNT_CELL_COPY_PREFIX_SINGULAR".localized
+        return "\(self) \(suffix)"
     }
 }

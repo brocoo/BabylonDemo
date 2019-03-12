@@ -71,7 +71,7 @@
 		20D97D332235A0FA00337F77 /* GETPosts_malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 20D97D322235A0FA00337F77 /* GETPosts_malformed.json */; };
 		20D97D362235A7F000337F77 /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D352235A7F000337F77 /* PostsViewModelTests.swift */; };
 		20D97D392235A91100337F77 /* MockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D382235A91100337F77 /* MockDataService.swift */; };
-		20D97D3B2235AC0100337F77 /* AuthoredPost+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D3A2235AC0100337F77 /* AuthoredPost+MockData.swift */; };
+		20D97D3B2235AC0100337F77 /* AuthoredPost+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D3A2235AC0100337F77 /* AuthoredPost+Mock.swift */; };
 		20D97D3E2235B70300337F77 /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852FA5222AF7F400C0E054 /* RxAtomic.framework */; };
 		20D97D3F2235B70300337F77 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8B222AF50E00C0E054 /* RxBlocking.framework */; };
 		20D97D402235B70300337F77 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20852F8F222AF50E00C0E054 /* RxCocoa.framework */; };
@@ -85,11 +85,13 @@
 		20D97D4B2235C2C900337F77 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20D97D4D2235C2C900337F77 /* Localizable.strings */; };
 		20D97D4F2235C2ED00337F77 /* String+Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D4E2235C2ED00337F77 /* String+Localize.swift */; };
 		20D97D51223684DC00337F77 /* PostDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D50223684DC00337F77 /* PostDetailViewModelTests.swift */; };
-		20D97D53223689A100337F77 /* Comment+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D52223689A100337F77 /* Comment+MockData.swift */; };
+		20D97D53223689A100337F77 /* Comment+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D52223689A100337F77 /* Comment+Mock.swift */; };
 		20D97D5522368B9500337F77 /* PostsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5422368B9500337F77 /* PostsViewControllerTests.swift */; };
 		20D97D5722368C6900337F77 /* Error+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5622368C6900337F77 /* Error+Message.swift */; };
 		20D97D592236B1F100337F77 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D582236B1F100337F77 /* Event.swift */; };
-		20FEA7E3222D647B004FA966 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E2222D647B004FA966 /* CellView.swift */; };
+		20D97D5D2236F60500337F77 /* MockNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5C2236F60500337F77 /* MockNavigationCoordinator.swift */; };
+		20D97D5F2236F6C400337F77 /* AuthoredPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D97D5E2236F6C400337F77 /* AuthoredPost.swift */; };
+		20FEA7E3222D647B004FA966 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E2222D647B004FA966 /* CollectionViewCell.swift */; };
 		20FEA7E8222D786D004FA966 /* CollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */; };
 		20FEA7EC222D8F44004FA966 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */; };
 		20FEA7EE222D91D2004FA966 /* CellViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FEA7ED222D91D2004FA966 /* CellViewRepresentable.swift */; };
@@ -211,15 +213,17 @@
 		20D97D322235A0FA00337F77 /* GETPosts_malformed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GETPosts_malformed.json; sourceTree = "<group>"; };
 		20D97D352235A7F000337F77 /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 		20D97D382235A91100337F77 /* MockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataService.swift; sourceTree = "<group>"; };
-		20D97D3A2235AC0100337F77 /* AuthoredPost+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthoredPost+MockData.swift"; sourceTree = "<group>"; };
+		20D97D3A2235AC0100337F77 /* AuthoredPost+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthoredPost+Mock.swift"; sourceTree = "<group>"; };
 		20D97D4C2235C2C900337F77 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		20D97D4E2235C2ED00337F77 /* String+Localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localize.swift"; sourceTree = "<group>"; };
 		20D97D50223684DC00337F77 /* PostDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModelTests.swift; sourceTree = "<group>"; };
-		20D97D52223689A100337F77 /* Comment+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+MockData.swift"; sourceTree = "<group>"; };
+		20D97D52223689A100337F77 /* Comment+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Mock.swift"; sourceTree = "<group>"; };
 		20D97D5422368B9500337F77 /* PostsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerTests.swift; sourceTree = "<group>"; };
 		20D97D5622368C6900337F77 /* Error+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Message.swift"; sourceTree = "<group>"; };
 		20D97D582236B1F100337F77 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		20FEA7E2222D647B004FA966 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		20D97D5C2236F60500337F77 /* MockNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationCoordinator.swift; sourceTree = "<group>"; };
+		20D97D5E2236F6C400337F77 /* AuthoredPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoredPost.swift; sourceTree = "<group>"; };
+		20FEA7E2222D647B004FA966 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		20FEA7E7222D786D004FA966 /* CollectionViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewAdapter.swift; sourceTree = "<group>"; };
 		20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		20FEA7ED222D91D2004FA966 /* CellViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewRepresentable.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 				20215AE0222B08F7002A1130 /* Post.swift */,
 				201D4E5F222C697B0083BFD2 /* User.swift */,
 				201D4E71222D061E0083BFD2 /* Comment.swift */,
+				20D97D5E2236F6C400337F77 /* AuthoredPost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,7 +387,7 @@
 				20215AF1222C5713002A1130 /* UICollectionView+CellView.swift */,
 				201D4E5D222C60350083BFD2 /* String+BoundingRect.swift */,
 				201D4E65222C83A40083BFD2 /* Reactive+UIView.swift */,
-				20FEA7E2222D647B004FA966 /* CellView.swift */,
+				20FEA7E2222D647B004FA966 /* CollectionViewCell.swift */,
 				20FEA7EB222D8F44004FA966 /* ConfigurableView.swift */,
 				20FEA7F1222DA1A4004FA966 /* SizeConfigurableView.swift */,
 				201E5DA62232CA1F00BD68E3 /* UIRefreshControl+Reactive.swift */,
@@ -425,8 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				20D97D302235984E00337F77 /* XCTestCase+JSONData.swift */,
-				20D97D3A2235AC0100337F77 /* AuthoredPost+MockData.swift */,
-				20D97D52223689A100337F77 /* Comment+MockData.swift */,
+				20D97D3A2235AC0100337F77 /* AuthoredPost+Mock.swift */,
+				20D97D52223689A100337F77 /* Comment+Mock.swift */,
 				20D97D582236B1F100337F77 /* Event.swift */,
 			);
 			path = Helpers;
@@ -572,6 +577,7 @@
 			isa = PBXGroup;
 			children = (
 				20D97D382235A91100337F77 /* MockDataService.swift */,
+				20D97D5C2236F60500337F77 /* MockNavigationCoordinator.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -778,13 +784,14 @@
 				20630839222AF16800C68F43 /* NavigationCoordinator.swift in Sources */,
 				201D4E5E222C60350083BFD2 /* String+BoundingRect.swift in Sources */,
 				201D4E66222C83A40083BFD2 /* Reactive+UIView.swift in Sources */,
+				20D97D5F2236F6C400337F77 /* AuthoredPost.swift in Sources */,
 				20FEA7EE222D91D2004FA966 /* CellViewRepresentable.swift in Sources */,
 				20215AE1222B08F7002A1130 /* Post.swift in Sources */,
 				20FEA7EC222D8F44004FA966 /* ConfigurableView.swift in Sources */,
 				20215ADC222B066A002A1130 /* APIService.swift in Sources */,
 				2020A865222DE2AB00165DDF /* CollectionViewDataSourceItem.swift in Sources */,
 				20D97D5722368C6900337F77 /* Error+Message.swift in Sources */,
-				20FEA7E3222D647B004FA966 /* CellView.swift in Sources */,
+				20FEA7E3222D647B004FA966 /* CollectionViewCell.swift in Sources */,
 				201D4E74222D07080083BFD2 /* PostDetailViewModel.swift in Sources */,
 				20215AF2222C5713002A1130 /* UICollectionView+CellView.swift in Sources */,
 				20215AF5222C57EE002A1130 /* PostCollectionViewCell.swift in Sources */,
@@ -797,10 +804,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2055D53F22358E3E00BFD444 /* MockRequest.swift in Sources */,
-				20D97D53223689A100337F77 /* Comment+MockData.swift in Sources */,
+				20D97D53223689A100337F77 /* Comment+Mock.swift in Sources */,
+				20D97D5D2236F60500337F77 /* MockNavigationCoordinator.swift in Sources */,
 				2055D54022358E3E00BFD444 /* MockURLSession.swift in Sources */,
 				20215ADA222B0223002A1130 /* Endpoint.swift in Sources */,
-				20D97D3B2235AC0100337F77 /* AuthoredPost+MockData.swift in Sources */,
+				20D97D3B2235AC0100337F77 /* AuthoredPost+Mock.swift in Sources */,
 				20D97D392235A91100337F77 /* MockDataService.swift in Sources */,
 				20D97D592236B1F100337F77 /* Event.swift in Sources */,
 				20D97D51223684DC00337F77 /* PostDetailViewModelTests.swift in Sources */,

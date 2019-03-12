@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 extension Array where Element == AuthoredPost {
     
-    func asDataSource(collectionViewWidth width: CGFloat) -> [CollectionViewDataSourceItem] {
-        return map { CollectionViewDataSourceItem(AuthoredPostCell(model: $0), width: width) }
+    func asDataSource(collectionViewWidth width: CGFloat, emitSelectionOn selection: PublishRelay<AuthoredPost>) -> [CollectionViewDataSourceItem] {
+        return map { (authoredPostCell) -> CollectionViewDataSourceItem in
+            let cell = AuthoredPostCell(model: authoredPostCell)
+            let item = CollectionViewDataSourceItem(cell, width: width, onSelection: { (authoredPostCell) in
+                selection.accept(authoredPostCell)
+            })
+            return item
+        }
     }
 }
 

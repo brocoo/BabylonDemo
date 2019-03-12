@@ -32,12 +32,12 @@ final class NavigationCoordinator: NSObject {
     
     // MARK: - Fileprivate helper
     
-    fileprivate func makePostsViewController() -> UIViewController {
+    private func makePostsViewController() -> UIViewController {
         let viewModel = PostsViewModel(dataProvider: dataService)
         return PostsViewController(viewModel: viewModel, navigationCoordinator: self)
     }
     
-    fileprivate func makePostDetailsViewController(from authoredPost: AuthoredPost) -> UIViewController {
+    private func makePostDetailsViewController(from authoredPost: AuthoredPost) -> UIViewController {
         let viewModel = PostDetailViewModel(dataService: dataService, authoredPost: authoredPost)
         return PostDetailViewController(viewModel: viewModel, navigationCoordinator: self)
     }

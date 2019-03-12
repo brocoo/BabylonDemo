@@ -12,24 +12,24 @@ struct CollectionViewDataSourceItem {
     
     // MARK - Private properties
     
-    private let configuredCellClosure: (UICollectionView, IndexPath) -> UICollectionViewCell
-    private let registerCellClosure: (UICollectionView) -> Void
+    let onSelectionClosure: () -> Void
+    let configuredCellClosure: (UICollectionView, IndexPath) -> UICollectionViewCell
+    let registerCellClosure: (UICollectionView) -> Void
     fileprivate let cellIdentifier: String
     
     // MARK: - Initializer
     
-    init<T: CellViewRepresentable>(_ base: T, cachedSize: CGSize) {
+    init<T: CellViewRepresentable>(_ base: T, cachedSize: CGSize, onSelection: @escaping (T.CellType.Model) -> Void = { _ in }) {
         registerCellClosure = { base.registerCollectionViewCell(for: $0) }
         configuredCellClosure = { base.asConfiguredCollectionViewCell(dequeuedFrom: $0, atIndexPath: $1) }
         cellIdentifier = base.cellType.defaultReuseIdentifier
+        onSelectionClosure = { onSelection(base.model) }
         self.cachedSize = cachedSize
     }
     
-    init<T: CellViewRepresentable>(_ base: T, width: CGFloat) where T.CellType: SizeConfigurableView {
-        registerCellClosure = { base.registerCollectionViewCell(for: $0) }
-        configuredCellClosure = { base.asConfiguredCollectionViewCell(dequeuedFrom: $0, atIndexPath: $1) }
-        cellIdentifier = base.cellType.defaultReuseIdentifier
-        cachedSize = base.cellType.size(with: base.model, forWidth: width)
+    init<T: CellViewRepresentable>(_ base: T, width: CGFloat, onSelection: @escaping (T.CellType.Model) -> Void = { _ in }) where T.CellType: SizeConfigurableView {
+        let size = base.cellType.size(with: base.model, forWidth: width)
+        self.init(base, cachedSize: size, onSelection: onSelection)
     }
     
     // MARK: - Helper methods and properties
@@ -40,6 +40,10 @@ struct CollectionViewDataSourceItem {
     
     func registerCell(on collectionView: UICollectionView) {
         registerCellClosure(collectionView)
+    }
+    
+    func didGetSelected() {
+        onSelectionClosure()
     }
     
     var cachedSize: CGSize

@@ -14,7 +14,7 @@ import RxTest
 
 final class PostsViewModelTests: XCTestCase {
     
-    private var dataService: MockDataProvider!
+    private var dataService: MockDataService!
     private var scheduler: TestScheduler!
     private var disposeBag: DisposeBag!
     
@@ -22,7 +22,7 @@ final class PostsViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.dataService = MockDataProvider()
+        self.dataService = MockDataService()
         self.scheduler = TestScheduler(initialClock: 0)
         self.disposeBag = DisposeBag()
     }
@@ -35,13 +35,13 @@ final class PostsViewModelTests: XCTestCase {
 
     func testItEmitsAuthoredPostsAndErrors() {
         dataService.postsEvents = [
-            Event.next(AuthoredPost.makeMockData(count: 10)),
-            Event.next(AuthoredPost.makeMockData(count: 10)),
+            Event.next(AuthoredPost.makeMocks(count: 10)),
+            Event.next(AuthoredPost.makeMocks(count: 10)),
             Event.error(MockError()),
             Event.error(MockError()),
-            Event.next(AuthoredPost.makeMockData(count: 10)),
-            Event.next(AuthoredPost.makeMockData(count: 3)),
-            Event.next(AuthoredPost.makeMockData(count: 10))
+            Event.next(AuthoredPost.makeMocks(count: 10)),
+            Event.next(AuthoredPost.makeMocks(count: 3)),
+            Event.next(AuthoredPost.makeMocks(count: 10))
         ]
         
         let authoredPostsCount = scheduler.createObserver(Int.self)

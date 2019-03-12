@@ -1,5 +1,5 @@
 //
-//  CellView.swift
+//  CollectionViewCell.swift
 //  BabylonDemo
 //
 //  Created by Julien Ducret on 3/4/19.

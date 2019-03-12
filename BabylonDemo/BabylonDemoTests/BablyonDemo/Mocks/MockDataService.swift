@@ -12,7 +12,7 @@ import RxCocoa
 import RxTest
 @testable import BabylonDemo
 
-final class MockDataProvider {
+final class MockDataService {
     
     var postsEvents: [Event<[AuthoredPost]>] = []
     var commentsEvents: [Event<[Comment]>] = []
@@ -20,7 +20,7 @@ final class MockDataProvider {
 
 // MARK: -
 
-extension MockDataProvider: PostsDataServiceProtocol {
+extension MockDataService: PostsDataServiceProtocol {
     
     // MARK: - PostsDataServiceProtocol
     
@@ -34,7 +34,7 @@ extension MockDataProvider: PostsDataServiceProtocol {
 
 // MARK: -
 
-extension MockDataProvider: PostDetailDataServiceProtocol {
+extension MockDataService: PostDetailDataServiceProtocol {
     
     // MARK: - PostDetailDataServiceProtocol
     
