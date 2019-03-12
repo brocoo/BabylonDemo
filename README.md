@@ -27,9 +27,9 @@ For each view controller we have:
 
 The `CollectionViewAdapter` is an object conforming to `UICollectionViewDataSource` and `UICollectionViewDelegate` accepting a list of `CollectionViewDataSourceItem` to populate a collection view.
 
-`CollectionViewDataSourceItem` is a wrapper structure around the protocol `CellViewRepresentable`. This protocol is used to bind a model to a UICollectionViewCell. This kind of type erasure mechanism allows us to populate the collection view with different types of cell.
+`CollectionViewDataSourceItem` is a wrapper structure around the protocol `CellViewRepresentable`. This protocol is used to bind a model to a `UICollectionViewCell`. This kind of type erasure mechanism allows us to populate the collection view with different types of cell.
 
-The size of each `UICollectionViewCell` is also cached and computed once for collection view bounds changes and model updates.
+The size of each `UICollectionViewCell` is computed once for collection view bounds changes and model updates and cached afterwards.
 
 ### NetworkKit
 
