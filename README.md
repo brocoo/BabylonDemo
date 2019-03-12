@@ -46,6 +46,8 @@ Data is persisted on the disk and is available when the app goes offline.
 
 ### Future improvements
 
-* Pagination: It doesn't look like the web service supports pagination at the moment, this can be an issue in terms of performence as at the moment, batches of 500 comments are fetched at once upon populating the post details
+* Pagination: It doesn't look like the web service supports pagination at the moment, this can be an issue in terms of performance although at the moment the dataset of posts and users is quite small.
 
 * Diffing for collection view data source: With a pagination mechanism in place, new pages of content can be added to a collection view avoiding reloading everything at once.
+
+* Support for sections in the collection view adapter
